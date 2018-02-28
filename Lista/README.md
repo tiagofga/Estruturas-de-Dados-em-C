@@ -1,1 +1,3 @@
 #Listas
+
+Listas são estruturas.
