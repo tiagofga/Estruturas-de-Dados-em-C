@@ -15,9 +15,7 @@ problema com eficiência.
 Cada estrutura de dados contém um conjunto específico de operações. Logo, a
 escolha da melhor estrutura está diretamente relacionada ao tipo de operação
 que você está pretendendo executar.
- - Podemos resumir a arte de programar em: Escolha de uma estrutura de
-dados eficiente e na construção do algoritmo para executar as operações
-relacionadas a essa estrutura.
+ - Podemos resumir a arte de programar em: Escolha de uma estrutura de dados eficiente e na construção do algoritmo para executar as operações relacionadas a essa estrutura.
 
 
 
