@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -O4 
 LIBS = 
-PROG = lista.exe
+PROG = lista
 PROG_D = lista_debug
 SOURCE = main.c lista.c
 
