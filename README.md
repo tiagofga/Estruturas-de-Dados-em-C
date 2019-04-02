@@ -24,6 +24,7 @@ Este repositório tem como objetivo divulgar o conteúdo de Estruturas de Dados 
 Para navegar nos assunto acesse os códigos:
 
 - [Tipo Abstrato de Dados (TAD)](https://github.com/tiagofga/Estruturas-de-Dados-em-C/tree/master/TAD).
+- [Complexidade de Algoritmos](https://github.com/tiagofga/Estruturas-de-Dados-em-C/tree/master/Complexidade).)
 - [Listas](https://github.com/tiagofga/Estruturas-de-Dados-em-C/tree/master/Lista).
 - [Filas](https://github.com/tiagofga/Estruturas-de-Dados-em-C/tree/master/Fila).
 - [Pilhas](https://github.com/tiagofga/Estruturas-de-Dados-em-C/tree/master/Pilha).
