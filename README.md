@@ -3,7 +3,7 @@
 Algoritmos e Estruturas de Dados estão intimamente relacionados:
 - Não se estuda estrutura de dados sem considerar os algoritmos que estão relacionados a cada estrutura.
 
-Dica: Ao escolher um algoritmo para resolver um determinado problema, observe
+> Dica: Ao escolher um algoritmo para resolver um determinado problema, observe
 se a estrutura de dados associada ao mesmo é adequada para solucionar o
 problema com eficiência.
 
