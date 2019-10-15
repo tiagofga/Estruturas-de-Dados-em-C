@@ -12,6 +12,7 @@ int ordenadacres(LISTA *lista){
         }
         return 1;
     }
+    return 0;
 }
 
 int ordenadadecres(LISTA *lista){
@@ -25,6 +26,7 @@ int ordenadadecres(LISTA *lista){
         }
         return 1;
     }
+    return 0;
 }
 
 int copia (LISTA *lista, LISTA *lista2, ITEM *item){
@@ -38,6 +40,7 @@ int copia (LISTA *lista, LISTA *lista2, ITEM *item){
         inserir_fim(lista2,item);
         return 0;
     }
+    return 0;
 }
 
 int copia_repetir (LISTA *lista, LISTA *lista2, ITEM *item, int pos){
@@ -58,6 +61,7 @@ int copia_repetir (LISTA *lista, LISTA *lista2, ITEM *item, int pos){
         return 0;
         }
     }
+    return 0;
 }
 
 int inverterL1_L2 (LISTA *lista, LISTA *lista2, ITEM *item){
@@ -71,6 +75,7 @@ int inverterL1_L2 (LISTA *lista, LISTA *lista2, ITEM *item){
     }
     *item = lista->itens[i];
     inserir_fim(lista2,item);
+    return 0;
 }
 
 int inverterL1 (LISTA *lista, ITEM *item){
@@ -82,6 +87,7 @@ int inverterL1 (LISTA *lista, ITEM *item){
         lista->itens[lista->fim] = lista->itens[i];
         return 1;
     }
+    return 0;
 }
 
 int eliminar (LISTA *lista, ITEM *item, int chave){
@@ -95,6 +101,7 @@ int eliminar (LISTA *lista, ITEM *item, int chave){
             return 1;
         }
     }
+    return 0;
 }
 
 void criar(LISTA *lista){

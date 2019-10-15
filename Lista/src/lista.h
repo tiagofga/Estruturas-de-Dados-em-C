@@ -1,7 +1,6 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-
 #define TAM 10
 
 typedef struct {
@@ -30,5 +29,4 @@ int copia_repetir (LISTA *lista, LISTA *lista2, ITEM *item, int pos);
 int inverterL1_L2 (LISTA *lista, LISTA *lista2, ITEM *item);
 int inverterL1 (LISTA *lista, ITEM *item);
 int eliminar (LISTA *lista, ITEM *item, int chave);
-#endif 
-
+#endif
