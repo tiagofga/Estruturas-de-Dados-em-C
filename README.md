@@ -1,7 +1,12 @@
 # Estruturas de Dados em C
 
-[![Licença](https://img.shields.io/badge/licen%C3%A7a-Apache%202.0-blue.svg)](./LICENSE)
-[![Linguagem](https://img.shields.io/badge/linguagem-C-brightgreen.svg)]()
+[![CI](https://github.com/tiagofga/Estruturas-de-Dados-em-C/actions/workflows/ci.yml/badge.svg)](https://github.com/tiagofga/Estruturas-de-Dados-em-C/actions/workflows/ci.yml)
+![release](https://img.shields.io/badge/release-v0.1.0-orange)
+[![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
+![C](https://img.shields.io/badge/C-17-brightgreen)
+![gcc](https://img.shields.io/badge/GCC-7%2B-informational)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](../../issues)
+[![issues welcome](https://img.shields.io/badge/issues-welcome-brightgreen.svg)](../../issues)
 
 Repositório educacional com implementações de estruturas de dados em C, cobrindo as
 estruturas mais fundamentais com exemplos executáveis, testes automatizados e explicações
