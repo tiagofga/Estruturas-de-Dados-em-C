@@ -2,14 +2,28 @@
 
 #include <stdio.h>
 
+static int inserir_com_validacao(No **raiz, int valor) {
+    No *resultado = arvore_inserir(*raiz, valor);
+    if (resultado == NULL) {
+        return 0;
+    }
+
+    *raiz = resultado;
+    return 1;
+}
+
 int main(void) {
     No *raiz = NULL;
 
-    raiz = arvore_inserir(raiz, 40);
-    raiz = arvore_inserir(raiz, 20);
-    raiz = arvore_inserir(raiz, 60);
-    raiz = arvore_inserir(raiz, 10);
-    raiz = arvore_inserir(raiz, 30);
+    if (!inserir_com_validacao(&raiz, 40) ||
+        !inserir_com_validacao(&raiz, 20) ||
+        !inserir_com_validacao(&raiz, 60) ||
+        !inserir_com_validacao(&raiz, 10) ||
+        !inserir_com_validacao(&raiz, 30)) {
+        fprintf(stderr, "Erro ao inserir nó na árvore.\n");
+        arvore_destruir(raiz);
+        return 1;
+    }
 
     printf("Árvore em ordem: ");
     arvore_em_ordem(raiz);

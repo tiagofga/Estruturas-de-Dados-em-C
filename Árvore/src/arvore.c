@@ -16,16 +16,33 @@ No *arvore_inserir(No *raiz, int valor) {
         return novo_no;
     }
 
-    if (valor < raiz->valor) {
-        No *esquerda = arvore_inserir(raiz->esquerda, valor);
-        if (esquerda != NULL) {
-            raiz->esquerda = esquerda;
+    No *atual = raiz;
+    No *pai = NULL;
+
+    while (atual != NULL) {
+        pai = atual;
+        if (valor < atual->valor) {
+            atual = atual->esquerda;
+        } else if (valor > atual->valor) {
+            atual = atual->direita;
+        } else {
+            return raiz;
         }
-    } else if (valor > raiz->valor) {
-        No *direita = arvore_inserir(raiz->direita, valor);
-        if (direita != NULL) {
-            raiz->direita = direita;
-        }
+    }
+
+    No *novo_no = malloc(sizeof(No));
+    if (novo_no == NULL) {
+        return NULL;
+    }
+
+    novo_no->valor = valor;
+    novo_no->esquerda = NULL;
+    novo_no->direita = NULL;
+
+    if (valor < pai->valor) {
+        pai->esquerda = novo_no;
+    } else {
+        pai->direita = novo_no;
     }
 
     return raiz;
