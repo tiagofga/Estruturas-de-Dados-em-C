@@ -48,100 +48,121 @@ void arvore_destruir(No *raiz);
 
 ### `arvore_inserir`
 
-```c
-No *arvore_inserir(No *raiz, int valor);
-```
-
 Insere `valor` na BST mantendo a propriedade de ordenação.
 
 - Se `raiz == NULL`, cria e retorna um novo nó com `valor`.
-- Percorre iterativamente até encontrar a posição correta.
-- **Duplicatas são ignoradas** — se `valor` já existe, a árvore não é modificada.
-- **Retorna** o ponteiro para a raiz (que pode ter mudado se a árvore estava vazia),
-  ou `NULL` em caso de falha de alocação.
-- **Complexidade**: O(log n) médio, O(n) pior caso (árvore degenerada).
-
-> **Importante:** sempre reatribua `raiz = arvore_inserir(raiz, valor)` para capturar
-> a raiz quando a árvore estava vazia.
-
----
+- Duplicatas são ignoradas.
+- **Complexidade**: O(log n) médio, O(n) pior caso.
 
 ### `arvore_buscar`
 
-```c
-int arvore_buscar(const No *raiz, int valor);
-```
+Busca recursiva por `valor`.
 
-Busca recursiva por `valor` na BST.
-
-- Em cada nó, descende para a esquerda se `valor < raiz->valor` ou para a direita
-  se `valor > raiz->valor`.
-- **Retorna** `1` se encontrado, `0` caso contrário (incluindo `raiz == NULL`).
+- **Retorna** `1` se encontrado, `0` caso contrário.
 - **Complexidade**: O(log n) médio, O(n) pior caso.
-
----
 
 ### `arvore_em_ordem`
 
-```c
-void arvore_em_ordem(const No *raiz);
-```
-
-Percurso **em-ordem** (esquerda → raiz → direita), que imprime os valores em ordem
-crescente, separados por espaço.
+Percurso em-ordem (esquerda → raiz → direita), imprimindo valores crescentes.
 
 - **Complexidade**: O(n).
-
----
 
 ### `arvore_destruir`
 
-```c
-void arvore_destruir(No *raiz);
-```
-
-Libera recursivamente todos os nós da árvore (percurso pós-ordem).
-Seguro para chamar com `raiz == NULL`.
+Libera recursivamente todos os nós.
 
 - **Complexidade**: O(n).
 
 ---
 
-## Complexidade resumida
+## Complexidade resumida (BST)
 
 | Operação | Caso médio | Pior caso |
 |----------|-----------|-----------|
 | Inserir | O(log n) | O(n) |
 | Buscar | O(log n) | O(n) |
-| Percurso em-ordem | O(n) | O(n) |
+| Percurso | O(n) | O(n) |
 | Destruir | O(n) | O(n) |
 
-> O pior caso O(n) ocorre em árvores degeneradas (inserções em ordem crescente ou
-> decrescente), formando uma lista encadeada. Árvores auto-balanceadas (AVL, Red-Black)
-> eliminam esse problema mas não fazem parte deste módulo.
+O pior caso ocorre quando a árvore fica degenerada (parecida com lista encadeada).
 
 ---
 
-## Propriedade BST
+## Árvores AVL
 
-Para todo nó `N` na árvore:
+AVL é uma BST **auto-balanceada**.
 
-```
-todos os valores em N->esquerda  <  N->valor
-todos os valores em N->direita   >  N->valor
-```
+- Mantém para cada nó: `|altura(esquerda) - altura(direita)| <= 1`.
+- Após inserção/remoção, aplica rotações para reequilibrar:
+  - rotação simples à direita (LL)
+  - rotação simples à esquerda (RR)
+  - rotação dupla esquerda-direita (LR)
+  - rotação dupla direita-esquerda (RL)
 
-Exemplo com inserções na ordem 40, 20, 60, 10, 30:
+### Complexidade (AVL)
 
-```
-        40
-       /  \
-      20   60
-     / \
-    10  30
-```
+| Operação | Complexidade |
+|----------|-------------|
+| Buscar | O(log n) |
+| Inserir | O(log n) |
+| Remover | O(log n) |
 
-Percurso em-ordem: `10 20 30 40 60` (ordem crescente).
+AVL costuma ter busca ligeiramente melhor que Rubro-Negra, com custo maior de rebalanceamento.
+
+---
+
+## Árvores Rubro-Negra
+
+Rubro-Negra também é BST auto-balanceada, com regras de coloração:
+
+1. Todo nó é vermelho ou preto.
+2. A raiz é preta.
+3. Folhas nulas são pretas.
+4. Nó vermelho não pode ter filho vermelho.
+5. Todo caminho da raiz até folhas nulas tem o mesmo número de nós pretos.
+
+### Complexidade (Rubro-Negra)
+
+| Operação | Complexidade |
+|----------|-------------|
+| Buscar | O(log n) |
+| Inserir | O(log n) |
+| Remover | O(log n) |
+
+Rubro-Negra tende a fazer menos rotações que AVL em atualizações frequentes.
+
+---
+
+## Métodos de ordenação relacionados a árvores
+
+### Tree Sort (via BST)
+
+1. Inserir todos os elementos na BST.
+2. Percorrer em-ordem.
+
+- **Médio**: O(n log n)
+- **Pior**: O(n²) sem balanceamento
+- Com AVL/Rubro-Negra: O(n log n) garantido
+
+### Heapsort (árvore implícita em array)
+
+Embora use heap em vetor (e não BST), é ordenação baseada em estrutura de árvore.
+
+- **Tempo**: O(n log n)
+- **Espaço extra**: O(1)
+
+---
+
+## Métodos de busca em árvores
+
+- **Busca em profundidade (DFS)**:
+  - Pré-ordem
+  - Em-ordem
+  - Pós-ordem
+- **Busca em largura (BFS)**:
+  - Percorre nível a nível (usa fila)
+
+Em BST, busca por chave usa a propriedade de ordenação (não precisa percorrer tudo).
 
 ---
 
@@ -161,11 +182,8 @@ int main(void) {
     raiz = arvore_inserir(raiz, 30);
 
     printf("Em ordem: ");
-    arvore_em_ordem(raiz);   /* 10 20 30 40 60 */
+    arvore_em_ordem(raiz);
     printf("\n");
-
-    printf("Buscar 30: %s\n", arvore_buscar(raiz, 30) ? "encontrado" : "não encontrado");
-    printf("Buscar 99: %s\n", arvore_buscar(raiz, 99) ? "encontrado" : "não encontrado");
 
     arvore_destruir(raiz);
     return 0;
@@ -178,10 +196,10 @@ int main(void) {
 
 ```bash
 cd Árvore
-make        # compila o exemplo em build/app
-make run    # executa o exemplo
-make test   # executa os testes automatizados
-make clean  # remove artefatos
+make
+make run
+make test
+make clean
 ```
 
 ---
