@@ -39,6 +39,10 @@ int  lista_inserir_fim(Lista *lista, int valor);
 int  lista_inserir_posicao(Lista *lista, size_t posicao, int valor);
 int  lista_remover_posicao(Lista *lista, size_t posicao, int *valor_removido);
 int  lista_buscar(const Lista *lista, int valor, size_t *posicao_encontrada);
+int  lista_buscar_metodo(const Lista *lista, int valor, size_t *posicao_encontrada, ListaMetodoBusca metodo);
+int  lista_ordenar(Lista *lista, ListaMetodoOrdenacao metodo);
+const char *lista_complexidade_busca(ListaMetodoBusca metodo);
+const char *lista_complexidade_ordenacao(ListaMetodoOrdenacao metodo);
 void lista_imprimir(const Lista *lista);
 ```
 
@@ -136,6 +140,46 @@ Busca linear por `valor`.
 
 ---
 
+### `lista_buscar_metodo`
+
+```c
+int lista_buscar_metodo(const Lista *lista, int valor, size_t *posicao_encontrada, ListaMetodoBusca metodo);
+```
+
+Permite escolher o método de busca:
+
+- `LISTA_BUSCA_LINEAR`: busca sequencial tradicional.
+- `LISTA_BUSCA_BINARIA`: busca binária (requer lista ordenada em ordem crescente).
+
+---
+
+### `lista_ordenar`
+
+```c
+int lista_ordenar(Lista *lista, ListaMetodoOrdenacao metodo);
+```
+
+Ordena os elementos em ordem crescente com o método escolhido:
+
+- `LISTA_ORDENACAO_BUBBLE`
+- `LISTA_ORDENACAO_INSERTION`
+- `LISTA_ORDENACAO_SELECTION`
+
+Retorna `1` em sucesso e `0` para método inválido ou lista nula.
+
+---
+
+### `lista_complexidade_busca` e `lista_complexidade_ordenacao`
+
+```c
+const char *lista_complexidade_busca(ListaMetodoBusca metodo);
+const char *lista_complexidade_ordenacao(ListaMetodoOrdenacao metodo);
+```
+
+Retornam uma descrição textual da complexidade de tempo/espaço do método informado.
+
+---
+
 ### `lista_imprimir`
 
 ```c
@@ -154,6 +198,8 @@ Imprime os elementos no formato `[ a, b, c ]` seguido de nova linha.
 | Inserir em posição | O(n) |
 | Remover por posição | O(n) |
 | Busca linear | O(n) |
+| Busca binária (lista ordenada) | O(log n) |
+| Ordenação Bubble/Insertion/Selection | O(n²) médio/pior |
 | Acesso por índice | O(1) |
 | Criar / Destruir | O(1) |
 
@@ -179,9 +225,11 @@ int main(void) {
 
     lista_imprimir(&lista);                 /* [ 10, 15, 20, 30 ] */
 
-    if (lista_buscar(&lista, 20, &posicao)) {
-        printf("20 encontrado na posição %zu\n", posicao);
-    }
+    lista_ordenar(&lista, LISTA_ORDENACAO_INSERTION);
+    lista_buscar_metodo(&lista, 20, &posicao, LISTA_BUSCA_BINARIA);
+    printf("20 encontrado na posição %zu\n", posicao);
+    printf("%s\n", lista_complexidade_ordenacao(LISTA_ORDENACAO_INSERTION));
+    printf("%s\n", lista_complexidade_busca(LISTA_BUSCA_BINARIA));
 
     lista_remover_posicao(&lista, 2U, &removido);
     printf("Removido: %d\n", removido);    /* Removido: 20 */

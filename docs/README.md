@@ -10,7 +10,9 @@ Referência completa de cada módulo do repositório.
 | [Pilha](./Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa |
 | [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra |
 | [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
-| [Algoritmos](./Algoritmos.md) | Notação de complexidade, métodos de busca e métodos de ordenação |
+| [Complexidade (Big-O)](./Algoritmos.md#notação-de-complexidade-big-o) | Fundamentos de análise de complexidade de tempo e espaço |
+| [Métodos de busca](./Algoritmos.md#métodos-de-busca) | Busca sequencial, binária, BFS e DFS |
+| [Métodos de ordenação](./Algoritmos.md#métodos-de-ordenação) | Comparativo entre os principais algoritmos de ordenação |
 | [Estática vs Dinâmica](./EstaticoVsDinamico.md) | Diferenças entre lista/fila/pilha estática e dinâmica com ponteiros |
 
 ---
