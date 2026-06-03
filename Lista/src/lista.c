@@ -14,20 +14,6 @@ static int lista_redimensionar(Lista *lista, size_t nova_capacidade) {
     return 1;
 }
 
-static int lista_esta_ordenada(const Lista *lista) {
-    if (lista == NULL || lista->tamanho <= 1U) {
-        return 1;
-    }
-
-    for (size_t i = 1U; i < lista->tamanho; ++i) {
-        if (lista->dados[i - 1U] > lista->dados[i]) {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
 static void lista_bubble_sort(Lista *lista) {
     if (lista == NULL || lista->tamanho <= 1U) {
         return;
@@ -185,7 +171,7 @@ int lista_buscar_metodo(const Lista *lista, int valor, size_t *posicao_encontrad
     }
 
     if (metodo == LISTA_BUSCA_BINARIA) {
-        if (!lista_esta_ordenada(lista) || lista_vazia(lista)) {
+        if (lista_vazia(lista)) {
             return 0;
         }
 

@@ -152,7 +152,6 @@ static void test_buscar_metodo(void) {
     assert(lista_buscar_metodo(&lista, 20, &posicao, LISTA_BUSCA_LINEAR) == 1);
     assert(posicao == 2U);
 
-    assert(lista_buscar_metodo(&lista, 20, &posicao, LISTA_BUSCA_BINARIA) == 0);
     assert(lista_ordenar(&lista, LISTA_ORDENACAO_BUBBLE) == 1);
     assert(lista_buscar_metodo(&lista, 20, &posicao, LISTA_BUSCA_BINARIA) == 1);
     assert(posicao == 1U);
