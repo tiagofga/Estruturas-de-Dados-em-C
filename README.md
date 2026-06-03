@@ -28,6 +28,7 @@ em cada módulo.
 | [Pilha](./Pilha) | [docs/Pilha.md](./docs/Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa | O(1) empilhar/desempilhar |
 | [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra | O(log n) médio, O(n) pior |
 | [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos clássicos | O(1) consulta de aresta |
+| [Métodos de Ordenação](./Métodos%20de%20Ordenação) | [docs/MetodosOrdenacao.md](./docs/MetodosOrdenacao.md) | Bubble, Insertion, Selection, Merge, Quick e Heap Sort para vetores | — |
 
 ---
 
@@ -120,7 +121,7 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
 - [Complexidade (Big-O)](./docs/Algoritmos.md#notação-de-complexidade-big-o)
 - [Métodos de busca](./docs/Algoritmos.md#métodos-de-busca)
-- [Métodos de ordenação](./docs/Algoritmos.md#métodos-de-ordenação)
+- [Métodos de ordenação para vetores](./docs/MetodosOrdenacao.md)
 - [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
 
 ---

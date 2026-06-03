@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        module: [Lista, Fila, Pilha, Árvore, Grafo]
+        module: [Lista, Fila, Pilha, Árvore, Grafo, "Métodos de Ordenação"]
 
     steps:
       - name: Checkout
