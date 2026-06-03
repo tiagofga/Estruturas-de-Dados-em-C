@@ -1,53 +1,36 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lista.h"
-#define TAM 10
 
-int main(int argc, char** argv) {
-    LISTA *lista=NULL, *lista2=NULL;
-    
-    criar(lista);
-    criar(lista2);
-    if (vazia(lista) == 1) {
-        printf("A lista 1 esta vazia! \n");
-    } else {
-        printf("A lista 1 nao esta vazia! \n");
+#include <stdio.h>
+
+int main(void) {
+    Lista lista;
+    size_t posicao = 0;
+    int removido = 0;
+
+    if (!lista_criar(&lista, 4U)) {
+        fprintf(stderr, "Erro ao criar lista.\n");
+        return 1;
     }
-    if (vazia(lista2) == 1) {
-        printf("A lista 2 esta vazia! \n");
-    } else {
-        printf("A lista 2 nao esta vazia! \n");
+
+    lista_inserir_fim(&lista, 10);
+    lista_inserir_fim(&lista, 20);
+    lista_inserir_fim(&lista, 30);
+    lista_inserir_posicao(&lista, 1U, 15);
+
+    printf("Lista após inserções: ");
+    lista_imprimir(&lista);
+
+    if (lista_buscar(&lista, 20, &posicao)) {
+        printf("Valor 20 encontrado na posição %zu.\n", posicao);
     }
-    ITEM *item=NULL;
-    printf("\n");
-    printf("Lista 1: \n");
-    imprimir(lista);
 
-    copia(lista, lista2, item);
-    printf("\n");
-    printf("Lista 2: \n");
-    imprimir(lista2);
-
-    inverterL1(lista, item);
-    printf("\n");
-    printf("Lista 1 invertida: \n");
-    imprimir(lista);
-
-    inverterL1_L2(lista, lista2, item);
-    printf("\n");
-    printf("Lista 1 invertida com a Lista 2: \n");
-    imprimir (lista2);
-
-    int chave;
-
-    printf("Digite uma chave para ser eliminada: \n");
-    scanf("%d", &chave);
-    if (eliminar(lista, item, chave) == 1) {
-        printf("Chave removida com sucesso! \n");
-    }else{
-        printf("Chave não removida!\n");
+    if (lista_remover_posicao(&lista, 2U, &removido)) {
+        printf("Valor removido: %d\n", removido);
     }
-    imprimir(lista);
 
+    printf("Lista final: ");
+    lista_imprimir(&lista);
+
+    lista_destruir(&lista);
+    return 0;
 }
-
