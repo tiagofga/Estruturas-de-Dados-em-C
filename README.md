@@ -3,7 +3,7 @@
 [![CI](https://github.com/tiagofga/Estruturas-de-Dados-em-C/actions/workflows/ci.yml/badge.svg)](https://github.com/tiagofga/Estruturas-de-Dados-em-C/actions/workflows/ci.yml)
 ![release](https://img.shields.io/badge/release-v0.1.0-orange)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
-![C](https://img.shields.io/badge/C-17-brightgreen)
+![C](https://img.shields.io/badge/C-language-brightgreen)
 ![gcc](https://img.shields.io/badge/GCC-7%2B-informational)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](../../issues)
 [![issues welcome](https://img.shields.io/badge/issues-welcome-brightgreen.svg)](../../issues)
