@@ -4,7 +4,6 @@
 
 Implementação de um **grafo não-direcionado** em C usando **matriz de adjacência**.
 Cada vértice é identificado por um índice inteiro de `0` a `vertices - 1`.
-Uma aresta entre `u` e `v` é representada por `matriz[u][v] = matriz[v][u] = 1`.
 
 ---
 
@@ -13,20 +12,15 @@ Uma aresta entre `u` e `v` é representada por `matriz[u][v] = matriz[v][u] = 1`
 ```c
 /* include/grafo.h */
 typedef struct {
-    size_t  vertices;  /* número de vértices */
-    int   **matriz;    /* matriz de adjacência vertices x vertices */
+    size_t  vertices;
+    int   **matriz;
 } Grafo;
 ```
 
-### Campos
-
 | Campo | Tipo | Descrição |
 |-------|------|-----------|
-| `vertices` | `size_t` | Número de vértices (imutável após criação) |
-| `matriz` | `int **` | Matriz quadrada alocada dinamicamente |
-
-`matriz[i][j] == 1` indica a existência da aresta entre `i` e `j`;
-`matriz[i][j] == 0` indica ausência.
+| `vertices` | `size_t` | Número de vértices |
+| `matriz` | `int **` | Matriz `V x V` com 0/1 para ausência/presença de aresta |
 
 ---
 
@@ -43,89 +37,7 @@ void grafo_imprimir(const Grafo *grafo);
 
 ---
 
-## Operações detalhadas
-
-### `grafo_criar`
-
-```c
-int grafo_criar(Grafo *grafo, size_t vertices);
-```
-
-Aloca e inicializa a matriz de adjacência com zeros.
-
-- Aloca `vertices` ponteiros e, para cada um, um array de `vertices` inteiros.
-- Em caso de falha parcial, libera a memória já alocada antes de retornar.
-- **Retorna** `1` em caso de sucesso, `0` se `grafo == NULL`, `vertices == 0`
-  ou falha de alocação.
-- **Complexidade**: O(V²).
-
----
-
-### `grafo_destruir`
-
-```c
-void grafo_destruir(Grafo *grafo);
-```
-
-Libera cada linha da matriz e depois o array de ponteiros. Zera os campos.
-Seguro para chamar com `grafo == NULL` ou `grafo->matriz == NULL`.
-
-- **Complexidade**: O(V).
-
----
-
-### `grafo_adicionar_aresta`
-
-```c
-int grafo_adicionar_aresta(Grafo *grafo, size_t origem, size_t destino);
-```
-
-Adiciona a aresta não-direcionada `(origem, destino)`:
-define `matriz[origem][destino] = 1` e `matriz[destino][origem] = 1`.
-
-- **Retorna** `0` se `grafo == NULL`, matriz não alocada ou índices fora dos limites.
-- **Complexidade**: O(1).
-
----
-
-### `grafo_remover_aresta`
-
-```c
-int grafo_remover_aresta(Grafo *grafo, size_t origem, size_t destino);
-```
-
-Remove a aresta `(origem, destino)`:
-define `matriz[origem][destino] = 0` e `matriz[destino][origem] = 0`.
-
-- **Retorna** `0` se índices inválidos ou grafo `NULL`.
-- **Complexidade**: O(1).
-
----
-
-### `grafo_tem_aresta`
-
-```c
-int grafo_tem_aresta(const Grafo *grafo, size_t origem, size_t destino);
-```
-
-Verifica se a aresta `(origem, destino)` existe.
-
-- **Retorna** `1` se a aresta existe, `0` caso contrário (inclusive índices inválidos).
-- **Complexidade**: O(1).
-
----
-
-### `grafo_imprimir`
-
-```c
-void grafo_imprimir(const Grafo *grafo);
-```
-
-Imprime a matriz de adjacência linha por linha, com valores separados por espaço.
-
----
-
-## Complexidade resumida
+## Complexidade resumida (matriz de adjacência)
 
 | Operação | Complexidade |
 |----------|-------------|
@@ -134,40 +46,65 @@ Imprime a matriz de adjacência linha por linha, com valores separados por espa�
 | Adicionar aresta | O(1) |
 | Remover aresta | O(1) |
 | Verificar aresta | O(1) |
-| Imprimir | O(V²) |
+| Listar vizinhos de um vértice | O(V) |
 
 ---
 
-## Representação visual
+## Métodos de busca em grafos
 
-Grafo com 4 vértices e arestas `0-1`, `0-2`, `2-3`:
+### BFS (Busca em Largura)
 
-```
-     0 --- 1
-     |
-     2 --- 3
-```
+- Percorre vértices por nível (usa fila).
+- Menor caminho em número de arestas para grafos não ponderados.
+- Complexidade:
+  - O(V + E) com lista de adjacência
+  - O(V²) com matriz de adjacência
 
-Matriz de adjacência correspondente:
+### DFS (Busca em Profundidade)
 
-```
-     0  1  2  3
-0  [ 0  1  1  0 ]
-1  [ 1  0  0  0 ]
-2  [ 1  0  0  1 ]
-3  [ 0  0  1  0 ]
-```
+- Percorre aprofundando caminho (recursiva ou pilha).
+- Usada para componentes conexas, detecção de ciclos e ordenação topológica (DAG).
+- Complexidade:
+  - O(V + E) com lista
+  - O(V²) com matriz
 
 ---
 
-## Trade-offs — Matriz vs. Lista de Adjacência
+## Algoritmos clássicos em grafos
 
-| Aspecto | Matriz de adjacência | Lista de adjacência |
-|---------|---------------------|---------------------|
+### Menor caminho
+
+- **Dijkstra** (pesos não negativos): O((V + E) log V) com heap.
+- **Bellman-Ford** (aceita pesos negativos): O(V * E).
+- **Floyd-Warshall** (todos os pares): O(V³).
+
+### Árvore Geradora Mínima (MST)
+
+- **Prim**: O(E log V) com heap e lista de adjacência.
+- **Kruskal**: O(E log E) + Union-Find.
+
+### Ordenação Topológica (grafos direcionados acíclicos)
+
+- Kahn (graus de entrada) ou DFS pós-ordem.
+- Complexidade: O(V + E).
+
+---
+
+## Matriz vs. Lista de adjacência
+
+| Aspecto | Matriz | Lista |
+|---------|--------|-------|
 | Espaço | O(V²) | O(V + E) |
-| Verificar aresta | O(1) | O(grau do vértice) |
-| Listar vizinhos | O(V) | O(grau do vértice) |
-| Melhor para | Grafos densos | Grafos esparsos |
+| Verificar aresta | O(1) | O(grau) |
+| Listar vizinhos | O(V) | O(grau) |
+| Melhor cenário | Grafos densos | Grafos esparsos |
+
+---
+
+## Métodos de ordenação relacionados a grafos
+
+- **Ordenação topológica** (DAG): ordena vértices por dependência.
+- **Não é ordenação de valores** como Quick/Merge; é ordenação estrutural de nós.
 
 ---
 
@@ -181,16 +118,11 @@ int main(void) {
     Grafo grafo;
 
     grafo_criar(&grafo, 4U);
-
     grafo_adicionar_aresta(&grafo, 0U, 1U);
     grafo_adicionar_aresta(&grafo, 0U, 2U);
     grafo_adicionar_aresta(&grafo, 2U, 3U);
 
-    printf("Matriz de adjacência:\n");
     grafo_imprimir(&grafo);
-
-    printf("Aresta 0-1: %s\n", grafo_tem_aresta(&grafo, 0U, 1U) ? "sim" : "não");
-    printf("Aresta 1-3: %s\n", grafo_tem_aresta(&grafo, 1U, 3U) ? "sim" : "não");
 
     grafo_destruir(&grafo);
     return 0;
@@ -203,10 +135,10 @@ int main(void) {
 
 ```bash
 cd Grafo
-make        # compila o exemplo em build/app
-make run    # executa o exemplo
-make test   # executa os testes automatizados
-make clean  # remove artefatos
+make
+make run
+make test
+make clean
 ```
 
 ---

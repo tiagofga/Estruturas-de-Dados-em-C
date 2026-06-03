@@ -7,8 +7,11 @@ Referência completa de cada módulo do repositório.
 | [TAD](./TAD.md) | Tipo Abstrato de Dados — conceito, dados, ações e exemplo |
 | [Lista](./Lista.md) | Lista sequencial dinâmica com redimensionamento automático |
 | [Fila](./Fila.md) | Fila circular (FIFO) com capacidade fixa |
-| [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) |
-| [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência |
+| [Pilha](./Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa |
+| [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra |
+| [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
+| [Algoritmos](./Algoritmos.md) | Notação de complexidade, métodos de busca e métodos de ordenação |
+| [Estática vs Dinâmica](./EstaticoVsDinamico.md) | Diferenças entre lista/fila/pilha estática e dinâmica com ponteiros |
 
 ---
 

@@ -25,8 +25,9 @@ em cada módulo.
 | [TAD](./TAD) | [docs/TAD.md](./docs/TAD.md) | Tipo Abstrato de Dados — conceito de interface vs. implementação | — |
 | [Lista](./Lista) | [docs/Lista.md](./docs/Lista.md) | Lista sequencial dinâmica com redimensionamento automático | O(1) fim, O(n) meio |
 | [Fila](./Fila) | [docs/Fila.md](./docs/Fila.md) | Fila circular (FIFO) com capacidade fixa | O(1) enfileirar/desenfileirar |
-| [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) | O(log n) médio, O(n) pior |
-| [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência | O(1) consulta de aresta |
+| [Pilha](./Pilha) | [docs/Pilha.md](./docs/Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa | O(1) empilhar/desempilhar |
+| [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra | O(log n) médio, O(n) pior |
+| [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos clássicos | O(1) consulta de aresta |
 
 ---
 
@@ -54,9 +55,10 @@ cd Estruturas-de-Dados-em-C
 ### Compilar e executar um módulo
 
 ```bash
-cd Lista        # ou Fila, Árvore, Grafo
+cd Lista        # ou Fila, Pilha, Árvore, Grafo
 make            # compila
-make run        # executa o exemplo
+make run        # executa o exemplo dinâmico
+make run_static # executa o exemplo estático (Lista/Fila/Pilha)
 make test       # executa os testes
 make clean      # remove artefatos
 ```
@@ -113,15 +115,18 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [TAD — Tipo Abstrato de Dados](./docs/TAD.md)
 - [Lista sequencial dinâmica](./docs/Lista.md)
 - [Fila circular](./docs/Fila.md)
+- [Pilha sequencial](./docs/Pilha.md)
 - [Árvore Binária de Busca](./docs/Arvore.md)
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
+- [Complexidade, busca e ordenação](./docs/Algoritmos.md)
+- [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
 
 ---
 
 ## Contribuindo
 
 1. Faça um fork do repositório.
-2. Crie uma branch descritiva: `git checkout -b feat/pilha`.
+2. Crie uma branch descritiva: `git checkout -b feat/minha-estrutura`.
 3. Implemente seguindo o padrão de estrutura de diretórios acima.
 4. Adicione testes em `tests/`.
 5. Garanta que `make` e `make test` passam sem erros.

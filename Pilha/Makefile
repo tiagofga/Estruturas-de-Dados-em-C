@@ -16,8 +16,8 @@ ALL_OBJECTS  := $(SRC:%.c=$(OBJ_DIR)/%.o)
 TEST_OBJECTS := $(TEST_SRC:%.c=$(OBJ_DIR)/%.o)
 LIB_OBJECTS  := $(filter-out $(OBJ_DIR)/src/main.o $(OBJ_DIR)/src/main_estatica.o, $(ALL_OBJECTS))
 
-DYNAMIC_OBJECTS := $(OBJ_DIR)/src/lista.o $(OBJ_DIR)/src/main.o
-STATIC_OBJECTS  := $(OBJ_DIR)/src/lista_estatica.o $(OBJ_DIR)/src/main_estatica.o
+DYNAMIC_OBJECTS := $(OBJ_DIR)/src/pilha.o $(OBJ_DIR)/src/main.o
+STATIC_OBJECTS  := $(OBJ_DIR)/src/pilha_estatica.o $(OBJ_DIR)/src/main_estatica.o
 
 all: build dynamic
 
