@@ -23,7 +23,7 @@ em cada módulo.
 | Módulo | Documentação | Descrição | Complexidade de acesso |
 |--------|-------------|-----------|------------------------|
 | [TAD](./TAD) | [docs/TAD.md](./docs/TAD.md) | Tipo Abstrato de Dados — conceito de interface vs. implementação | — |
-| [Lista](./Lista) | [docs/Lista.md](./docs/Lista.md) | Lista sequencial dinâmica com redimensionamento automático | O(1) fim, O(n) meio |
+| [Lista](./Lista) | [docs/Lista.md](./docs/Lista.md) | Lista sequencial dinâmica com busca linear/binária e ordenação configurável | O(1) fim, O(n) meio |
 | [Fila](./Fila) | [docs/Fila.md](./docs/Fila.md) | Fila circular (FIFO) com capacidade fixa | O(1) enfileirar/desenfileirar |
 | [Pilha](./Pilha) | [docs/Pilha.md](./docs/Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa | O(1) empilhar/desempilhar |
 | [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra | O(log n) médio, O(n) pior |
@@ -118,7 +118,9 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [Pilha sequencial](./docs/Pilha.md)
 - [Árvore Binária de Busca](./docs/Arvore.md)
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
-- [Complexidade, busca e ordenação](./docs/Algoritmos.md)
+- [Complexidade (Big-O)](./docs/Algoritmos.md#notação-de-complexidade-big-o)
+- [Métodos de busca](./docs/Algoritmos.md#métodos-de-busca)
+- [Métodos de ordenação](./docs/Algoritmos.md#métodos-de-ordenação)
 - [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
 
 ---

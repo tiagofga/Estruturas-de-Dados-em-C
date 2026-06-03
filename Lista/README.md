@@ -10,7 +10,9 @@ Também inclui versão estática em `src/lista_estatica.c` e exemplo em `src/mai
 - inserir no fim
 - inserir em posição específica
 - remover por posição
-- buscar valor
+- buscar valor (linear ou binária em lista ordenada)
+- ordenar lista (bubble, insertion ou selection)
+- consultar explicações de complexidade de busca e ordenação
 - imprimir elementos
 
 ## Executar
