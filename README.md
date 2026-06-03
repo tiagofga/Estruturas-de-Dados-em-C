@@ -118,6 +118,7 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [Árvore Binária de Busca](./docs/Arvore.md)
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
 - [Complexidade, busca e ordenação](./docs/Algoritmos.md)
+- [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
 
 ---
 

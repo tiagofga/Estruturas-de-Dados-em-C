@@ -11,6 +11,7 @@ Referência completa de cada módulo do repositório.
 | [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra |
 | [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
 | [Algoritmos](./Algoritmos.md) | Notação de complexidade, métodos de busca e métodos de ordenação |
+| [Estática vs Dinâmica](./EstaticoVsDinamico.md) | Diferenças entre lista/fila/pilha estática e dinâmica com ponteiros |
 
 ---
 
