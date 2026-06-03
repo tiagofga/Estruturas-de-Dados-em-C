@@ -163,3 +163,6 @@ nbdist/
 
 # End of https://www.gitignore.io/api/c,c++,linux,netbeans,visualstudiocode
 
+
+# Build artifacts from data structure modules
+*/build/

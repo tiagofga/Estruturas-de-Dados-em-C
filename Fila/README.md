@@ -15,4 +15,5 @@ Implementação de **fila circular** em C (FIFO: First In, First Out).
 cd Fila
 make
 make run
+make test
 ```

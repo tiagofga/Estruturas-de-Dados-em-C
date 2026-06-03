@@ -14,4 +14,5 @@ Implementação de **grafo não direcionado** com **matriz de adjacência** em C
 cd Grafo
 make
 make run
+make test
 ```

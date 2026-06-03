@@ -16,4 +16,5 @@ Implementação de **lista sequencial dinâmica** em C.
 cd Lista
 make
 make run
+make test
 ```

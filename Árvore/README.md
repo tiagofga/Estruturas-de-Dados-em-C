@@ -13,4 +13,5 @@ Implementação de **árvore binária de busca (BST)** em C.
 cd Árvore
 make
 make run
+make test
 ```
