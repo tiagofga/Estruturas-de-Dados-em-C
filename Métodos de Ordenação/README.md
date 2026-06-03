@@ -9,12 +9,12 @@ com análise de complexidade de tempo e espaço para cada método.
 
 | # | Algoritmo | Melhor | Médio | Pior | Espaço extra | Estável |
 |---|-----------|--------|-------|------|--------------|---------|
-| 1 | Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Sim |
-| 2 | Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Sim |
-| 3 | Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | Não |
-| 4 | Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Sim |
-| 5 | Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | Não |
-| 6 | Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) | Não |
+| 1 | Bubble Sort | Ω(n) | O(n²) | O(n²) | O(1) | Sim |
+| 2 | Insertion Sort | Ω(n) | O(n²) | O(n²) | O(1) | Sim |
+| 3 | Selection Sort | Θ(n²) | Θ(n²) | Θ(n²) | O(1) | Não |
+| 4 | Merge Sort | Θ(n log n) | Θ(n log n) | Θ(n log n) | O(n) | Sim |
+| 5 | Quick Sort | Ω(n log n) | O(n log n) | O(n²) | O(log n) | Não |
+| 6 | Heap Sort | Θ(n log n) | Θ(n log n) | Θ(n log n) | O(1) | Não |
 
 ---
 

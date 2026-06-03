@@ -12,7 +12,7 @@ Referência completa de cada módulo do repositório.
 | [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
 | [Complexidade (Big-O)](./Algoritmos.md#notação-de-complexidade-big-o) | Fundamentos de análise de complexidade de tempo e espaço |
 | [Métodos de busca](./Algoritmos.md#métodos-de-busca) | Busca sequencial, binária, BFS e DFS |
-| [Métodos de ordenação](./MetodosOrdenacao.md) | Complexidade e custo dos algoritmos de ordenação para vetores |
+| [Métodos de ordenação para vetores](./MetodosOrdenacao.md) | Complexidade e custo dos algoritmos de ordenação para vetores |
 | [Estática vs Dinâmica](./EstaticoVsDinamico.md) | Diferenças entre lista/fila/pilha estática e dinâmica com ponteiros |
 
 ---

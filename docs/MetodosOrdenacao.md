@@ -116,12 +116,12 @@ Este documento é a referência detalhada dos algoritmos de ordenação implemen
 
 | Algoritmo | Melhor | Médio | Pior | Espaço extra | Estável |
 |-----------|--------|-------|------|--------------|---------|
-| Bubble | O(n) | O(n²) | O(n²) | O(1) | Sim |
-| Insertion | O(n) | O(n²) | O(n²) | O(1) | Sim |
-| Selection | O(n²) | O(n²) | O(n²) | O(1) | Não |
-| Merge | O(n log n) | O(n log n) | O(n log n) | O(n) | Sim |
-| Quick | O(n log n) | O(n log n) | O(n²) | O(log n) | Não |
-| Heap | O(n log n) | O(n log n) | O(n log n) | O(1) | Não |
+| Bubble | Ω(n) | O(n²) | O(n²) | O(1) | Sim |
+| Insertion | Ω(n) | O(n²) | O(n²) | O(1) | Sim |
+| Selection | Θ(n²) | Θ(n²) | Θ(n²) | O(1) | Não |
+| Merge | Θ(n log n) | Θ(n log n) | Θ(n log n) | O(n) | Sim |
+| Quick | Ω(n log n) | O(n log n) | O(n²) | O(log n) | Não |
+| Heap | Θ(n log n) | Θ(n log n) | Θ(n log n) | O(1) | Não |
 
 ---
 
