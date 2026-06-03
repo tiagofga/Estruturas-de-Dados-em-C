@@ -1,4 +1,4 @@
-# Tipo Abstrato de Dados (TAD)
+# TAD — Tipo Abstrato de Dados
 
 ## O que é um TAD?
 
@@ -16,23 +16,41 @@ as operações disponíveis e o que elas fazem; os detalhes de implementação f
 Todo TAD é formado por dois elementos fundamentais:
 
 ### Dados
-São os valores armazenados e gerenciados pela estrutura.  
-Exemplos: a lista de elementos de uma fila, o nó raiz de uma árvore, o saldo de uma conta bancária.
+São os valores armazenados e gerenciados pela estrutura internamente.
+
+- Exemplo na Lista: o array `dados`, o `tamanho` atual e a `capacidade` alocada.
+- Exemplo na Fila: o array circular, os índices `inicio` e `fim` e o `tamanho`.
+- Exemplo na Árvore: cada nó com `valor`, ponteiro para `esquerda` e para `direita`.
 
 ### Ações (operações)
-São as funções que operam sobre os dados, formando a interface pública do TAD.  
-Exemplos: `inserir`, `remover`, `buscar`, `esta_vazia`, `destruir`.
+São as funções que compõem a interface pública — o único ponto de contato entre
+quem usa o TAD e a estrutura interna.
+
+- Exemplos: `inserir`, `remover`, `buscar`, `esta_vazia`, `destruir`.
 
 O usuário do TAD **só enxerga as ações**; os dados internos ficam encapsulados.
 
 ---
 
-## Exemplo básico em C
+## Separação entre interface e implementação em C
 
-Abaixo um TAD simples de **Ponto 2D**, mostrando as duas formas de acesso em C:
+Em C, a convenção usada neste repositório é:
+
+| Arquivo | Papel |
+|---------|-------|
+| `include/<nome>.h` | Interface pública (TAD) — declara tipos e funções |
+| `src/<nome>.c` | Implementação interna — define como as funções funcionam |
+
+Quem usa o módulo inclui apenas o `.h`. A mudança na implementação `.c`
+**não requer recompilação** de quem só depende do cabeçalho.
+
+---
+
+## Exemplo básico em C — `Ponto 2D`
+
+### `ponto.h` — interface pública (TAD)
 
 ```c
-/* ── ponto.h ── interface pública (TAD) ── */
 typedef struct {
     float x;
     float y;
@@ -48,14 +66,14 @@ void ponto_destruir(Ponto *p);
 float ponto_distancia_origem(const Ponto *p);
 ```
 
+### `main.c` — uso do TAD
+
 ```c
-/* ── main.c ── uso do TAD ── */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "ponto.h"
 
-/* implementação inline para o exemplo */
 Ponto *ponto_criar(float x, float y) {
     Ponto *p = malloc(sizeof(Ponto));
     p->x = x;   /* acesso via ponteiro: usa -> */
@@ -90,9 +108,9 @@ int main(void) {
 ### Diferença entre `.` e `->`
 
 | Situação | Operador | Exemplo |
-|---|---|---|
+|----------|----------|---------|
 | Variável do tipo struct (valor na pilha) | `.` | `estatico.x` |
-| Ponteiro para struct (alocado no heap) | `->` | `dinamico->x` |
+| Ponteiro para struct (heap) | `->` | `dinamico->x` |
 
 `p->x` é equivalente a `(*p).x` — o `->` desreferencia o ponteiro e acessa o campo em uma etapa.
 
@@ -101,18 +119,13 @@ int main(void) {
 ## Por que usar TAD?
 
 | Motivo | Benefício prático |
-|---|---|
+|--------|-------------------|
 | **Encapsulamento** | A implementação pode mudar sem afetar quem usa o TAD |
 | **Manutenção** | Bugs ficam isolados dentro do módulo |
 | **Reutilização** | O mesmo TAD pode ser usado em projetos diferentes |
-| **Legibilidade** | O código que usa o TAD fica mais expressivo e de alto nível |
+| **Legibilidade** | O código cliente fica mais expressivo e de alto nível |
 | **Testabilidade** | É possível testar cada operação de forma independente |
 
 ---
 
-## Neste repositório
-
-- Os arquivos em `include/` definem a **interface pública** (TAD)
-- Os arquivos em `src/` contêm a **implementação interna**
-
-Essa separação facilita manutenção, testes e reutilização.
+Voltar para o [índice da documentação](./README.md).
