@@ -11,7 +11,7 @@ Implementação de **grafo não direcionado** com **matriz de adjacência** em C
 
 ## Executar
 ```bash
-cd /tmp/workspace/tiagofga/Estruturas-de-Dados-em-C/Grafo
+cd Grafo
 make
 make run
 ```

@@ -12,7 +12,7 @@ Implementação de **fila circular** em C (FIFO: First In, First Out).
 
 ## Executar
 ```bash
-cd /tmp/workspace/tiagofga/Estruturas-de-Dados-em-C/Fila
+cd Fila
 make
 make run
 ```

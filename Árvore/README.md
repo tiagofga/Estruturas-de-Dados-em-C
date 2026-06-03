@@ -10,7 +10,7 @@ Implementação de **árvore binária de busca (BST)** em C.
 
 ## Executar
 ```bash
-cd /tmp/workspace/tiagofga/Estruturas-de-Dados-em-C/Árvore
+cd Árvore
 make
 make run
 ```

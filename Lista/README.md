@@ -13,7 +13,7 @@ Implementação de **lista sequencial dinâmica** em C.
 
 ## Executar
 ```bash
-cd /tmp/workspace/tiagofga/Estruturas-de-Dados-em-C/Lista
+cd Lista
 make
 make run
 ```
