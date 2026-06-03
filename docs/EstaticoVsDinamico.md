@@ -2,9 +2,10 @@
 
 ## Implementações deste repositório
 
-- **Lista**: sequencial dinâmica com redimensionamento (`int *dados`).
-- **Fila**: circular com array alocado dinamicamente (`int *dados`) e capacidade fixa após criação.
-- **Pilha**: sequencial com array alocado dinamicamente (`int *dados`) e capacidade fixa após criação.
+As duas versões (estática e dinâmica) para **Lista**, **Fila** e **Pilha** já estão implementadas no código.
+
+- **Dinâmica**: `src/lista.c`, `src/fila.c`, `src/pilha.c`
+- **Estática**: `src/lista_estatica.c`, `src/fila_estatica.c`, `src/pilha_estatica.c`
 
 Todas as estruturas usam **ponteiros** para acessar e alterar dados via funções:
 
@@ -75,6 +76,11 @@ Neste projeto, o padrão é:
 3. Destruir estrutura (`*_destruir`) para liberar memória.
 
 Isso garante manipulação eficiente sem copiar estruturas inteiras entre chamadas.
+
+Para Lista/Fila/Pilha, o Makefile agora oferece duas opções de execução:
+
+- `make run` (implementação dinâmica)
+- `make run_static` (implementação estática)
 
 ---
 

@@ -57,7 +57,8 @@ cd Estruturas-de-Dados-em-C
 ```bash
 cd Lista        # ou Fila, Pilha, Árvore, Grafo
 make            # compila
-make run        # executa o exemplo
+make run        # executa o exemplo dinâmico
+make run_static # executa o exemplo estático (Lista/Fila/Pilha)
 make test       # executa os testes
 make clean      # remove artefatos
 ```

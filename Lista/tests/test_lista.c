@@ -1,4 +1,5 @@
 #include "lista.h"
+#include "lista_estatica.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -138,6 +139,44 @@ static void test_buscar(void) {
     PASS("test_buscar");
 }
 
+static void test_estatica_criar_e_operacoes(void) {
+    ListaEstatica lista;
+    int removido = 0;
+    size_t posicao = 0;
+
+    assert(lista_estatica_criar(&lista, 4U) == 1);
+    assert(lista_estatica_vazia(&lista) == 1);
+
+    assert(lista_estatica_inserir_fim(&lista, 10) == 1);
+    assert(lista_estatica_inserir_fim(&lista, 30) == 1);
+    assert(lista_estatica_inserir_posicao(&lista, 1U, 20) == 1);
+
+    assert(lista_estatica_buscar(&lista, 20, &posicao) == 1);
+    assert(posicao == 1U);
+    assert(lista_estatica_remover_posicao(&lista, 1U, &removido) == 1);
+    assert(removido == 20);
+
+    lista_estatica_destruir(&lista);
+    assert(lista.capacidade == 0U);
+    PASS("test_estatica_criar_e_operacoes");
+}
+
+static void test_estatica_limites(void) {
+    ListaEstatica lista;
+
+    assert(lista_estatica_criar(&lista, 0U) == 0);
+    assert(lista_estatica_criar(&lista, LISTA_ESTATICA_CAPACIDADE_MAX + 1U) == 0);
+
+    assert(lista_estatica_criar(&lista, 2U) == 1);
+    assert(lista_estatica_inserir_fim(&lista, 1) == 1);
+    assert(lista_estatica_inserir_fim(&lista, 2) == 1);
+    assert(lista_estatica_cheia(&lista) == 1);
+    assert(lista_estatica_inserir_fim(&lista, 3) == 0);
+
+    lista_estatica_destruir(&lista);
+    PASS("test_estatica_limites");
+}
+
 int main(void) {
     printf("=== Testes: Lista ===\n");
     test_criar_e_destruir();
@@ -150,6 +189,8 @@ int main(void) {
     test_remover_posicao();
     test_remover_posicao_invalida();
     test_buscar();
+    test_estatica_criar_e_operacoes();
+    test_estatica_limites();
     printf("Todos os testes passaram.\n");
     return 0;
 }

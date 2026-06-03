@@ -1,4 +1,5 @@
 #include "pilha.h"
+#include "pilha_estatica.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -86,6 +87,41 @@ static void test_limites(void) {
     PASS("test_limites");
 }
 
+static void test_estatica_criar_e_operacoes(void) {
+    PilhaEstatica pilha;
+    int valor = 0;
+
+    assert(pilha_estatica_criar(&pilha, 3U) == 1);
+    assert(pilha_estatica_vazia(&pilha) == 1);
+
+    assert(pilha_estatica_empilhar(&pilha, 10) == 1);
+    assert(pilha_estatica_empilhar(&pilha, 20) == 1);
+    assert(pilha_estatica_topo(&pilha, &valor) == 1);
+    assert(valor == 20);
+
+    assert(pilha_estatica_desempilhar(&pilha, &valor) == 1);
+    assert(valor == 20);
+
+    pilha_estatica_destruir(&pilha);
+    assert(pilha.capacidade == 0U);
+    PASS("test_estatica_criar_e_operacoes");
+}
+
+static void test_estatica_limites(void) {
+    PilhaEstatica pilha;
+
+    assert(pilha_estatica_criar(&pilha, 0U) == 0);
+    assert(pilha_estatica_criar(&pilha, PILHA_ESTATICA_CAPACIDADE_MAX + 1U) == 0);
+
+    assert(pilha_estatica_criar(&pilha, 1U) == 1);
+    assert(pilha_estatica_empilhar(&pilha, 1) == 1);
+    assert(pilha_estatica_empilhar(&pilha, 2) == 0);
+    assert(pilha_estatica_cheia(&pilha) == 1);
+
+    pilha_estatica_destruir(&pilha);
+    PASS("test_estatica_limites");
+}
+
 int main(void) {
     printf("=== Testes: Pilha ===\n");
     test_criar_e_destruir();
@@ -94,6 +130,8 @@ int main(void) {
     test_empilhar_e_desempilhar();
     test_topo();
     test_limites();
+    test_estatica_criar_e_operacoes();
+    test_estatica_limites();
     printf("Todos os testes passaram.\n");
     return 0;
 }

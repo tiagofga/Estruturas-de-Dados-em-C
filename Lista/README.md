@@ -2,6 +2,8 @@
 
 Implementação de **lista sequencial dinâmica** em C.
 
+Também inclui versão estática em `src/lista_estatica.c` e exemplo em `src/main_estatica.c`.
+
 ## Operações implementadas
 - criar e destruir lista
 - verificar se está vazia
@@ -16,5 +18,6 @@ Implementação de **lista sequencial dinâmica** em C.
 cd Lista
 make
 make run
+make run_static
 make test
 ```
