@@ -1,5 +1,7 @@
 # Estruturas de Dados e Algoritmos em C
 
+**Português** | [English](./README.en.md)
+
 [![CI](https://github.com/tiagofga/Estruturas-de-Dados-e-Algoritmos-em-C/actions/workflows/ci.yml/badge.svg)](https://github.com/tiagofga/Estruturas-de-Dados-e-Algoritmos-em-C/actions/workflows/ci.yml)
 ![release](https://img.shields.io/badge/release-v0.2.0-orange)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
@@ -120,7 +122,7 @@ Todos os módulos seguem o mesmo padrão de `Makefile`, com:
 
 ## Documentação
 
-A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
+A pasta [`docs/`](./docs) contém a documentação completa em português. A versão em inglês está disponível em [`docs/en/`](./docs/en).
 
 - [TAD — Tipo Abstrato de Dados](./docs/TAD.md)
 - [Lista sequencial dinâmica](./docs/Lista.md)
