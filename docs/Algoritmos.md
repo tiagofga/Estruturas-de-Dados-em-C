@@ -1,5 +1,8 @@
 # Complexidade, Métodos de Busca e Métodos de Ordenação
 
+> Para uma visão introdutória focada apenas em custo computacional e
+> complexidade, consulte também [CustoComputacional.md](./CustoComputacional.md).
+
 ## Notação de complexidade (Big-O)
 
 A notação Big-O descreve o crescimento do custo de tempo e/ou memória em função do tamanho da entrada `n`.

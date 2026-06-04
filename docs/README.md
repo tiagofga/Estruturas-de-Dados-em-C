@@ -11,7 +11,7 @@ Referência completa de cada módulo do repositório.
 | [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra |
 | [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
 | [Complexidade (Big-O)](./Algoritmos.md#notação-de-complexidade-big-o) | Fundamentos de análise de complexidade de tempo e espaço |
-| [Pasta de custo computacional e complexidade](../Custo%20Computacional%20e%20Complexidade/README.md) | Introdução dedicada a custo computacional e ordens de crescimento |
+| [Custo computacional e complexidade](./CustoComputacional.md) | Material dedicado a custo de tempo/espaço, análise assintótica e ordens de crescimento |
 | [Métodos de busca para vetores](./MetodosBusca.md) | Complexidade e custo de métodos de busca sequencial e ordenada |
 | [Métodos de ordenação para vetores](./MetodosOrdenacao.md) | Complexidade e custo dos algoritmos de ordenação para vetores |
 | [Estática vs Dinâmica](./EstaticoVsDinamico.md) | Diferenças entre lista/fila/pilha estática e dinâmica com ponteiros |

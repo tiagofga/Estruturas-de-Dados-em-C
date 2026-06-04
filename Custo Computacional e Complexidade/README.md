@@ -1,45 +1,39 @@
 # Custo Computacional e Complexidade de Algoritmos
 
-Este diretório reúne uma explicação introdutória sobre **custo computacional** e
-**complexidade de algoritmos**, com foco em análise de tempo e espaço.
+Esta pasta centraliza uma explicação introdutória sobre **custo computacional**
+e **complexidade de algoritmos**, com foco em análise de tempo e espaço.
 
-## O que é custo computacional?
+## Conteúdo desta pasta
 
-Custo computacional é a quantidade de recursos que um algoritmo consome para
-resolver um problema.
+- visão geral sobre custo computacional
+- noções de complexidade assintótica
+- ordens de crescimento mais comuns
+- referência para a documentação detalhada do repositório
 
-Os recursos mais analisados são:
+## Resumo rápido
 
-- **Tempo de execução** (quantidade de operações)
-- **Memória adicional** (espaço extra utilizado)
-
-## O que é complexidade de algoritmos?
-
-A complexidade descreve como o custo cresce quando o tamanho da entrada `n`
-aumenta.
-
-A notação mais usada é a **Big-O**, que representa o limite assintótico superior
-(do pior crescimento).
-
-## Ordens de crescimento mais comuns
+- **Custo computacional** mede os recursos consumidos por um algoritmo.
+- Os recursos mais observados são **tempo** e **memória**.
+- **Complexidade** descreve como esse custo cresce em função da entrada `n`.
+- A notação mais usada é **Big-O**, comum para comparar algoritmos.
 
 | Complexidade | Interpretação | Exemplo |
 |--------------|---------------|---------|
-| `O(1)` | custo constante | acesso por índice em vetor |
-| `O(log n)` | crescimento lento | busca binária |
-| `O(n)` | proporcional ao tamanho da entrada | busca linear |
-| `O(n log n)` | intermediária | merge sort, heap sort |
-| `O(n²)` | custo quadrático | bubble/selection/insertion (pior caso) |
+| `O(1)` | constante | acesso por índice em vetor |
+| `O(log n)` | logarítmica | busca binária |
+| `O(n)` | linear | busca sequencial |
+| `O(n log n)` | linearítmica | merge sort, heap sort |
+| `O(n²)` | quadrática | bubble sort no pior caso |
 
-## Boas práticas de análise
+## Documentação detalhada
 
-- Avaliar **melhor caso, caso médio e pior caso**.
-- Diferenciar **tempo** de **espaço extra**.
-- Considerar a estrutura de dados usada.
-- Comparar algoritmos para o mesmo problema conforme o tamanho da entrada.
+Para aprofundar o assunto, consulte:
 
-## Referência no repositório
-
-Para uma explicação complementar com tabelas e comparações, consulte:
-
+- [Documentação detalhada sobre custo computacional](../docs/CustoComputacional.md)
 - [Documentação de algoritmos e Big-O](../docs/Algoritmos.md)
+
+## Testes
+
+Esta pasta é apenas **documental**, então não possui testes automatizados
+próprios. Os testes existentes do projeto continuam nas pastas `tests/` de cada
+módulo implementado.
