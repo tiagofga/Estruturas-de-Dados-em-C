@@ -6,7 +6,9 @@ Implementação de um grafo em C usando **matriz de adjacência**, com suporte a
 
 - modo **não-direcionado**
 - modo **direcionado**
-- algoritmos principais (BFS, DFS, Dijkstra e ordenação topológica)
+- arestas **não ponderadas** e **ponderadas com pesos positivos**
+- algoritmos principais: BFS, DFS, Dijkstra e ordenação topológica
+
 Cada vértice é identificado por um índice inteiro de `0` a `vertices - 1`.
 
 ---
@@ -26,7 +28,7 @@ typedef struct {
 |-------|------|-----------|
 | `vertices` | `size_t` | Número de vértices |
 | `direcionado` | `int` | `0` para não-direcionado, `1` para direcionado |
-| `matriz` | `int **` | Matriz `V x V` com 0/1 para ausência/presença de aresta |
+| `matriz` | `int **` | Matriz `V x V`; `0` indica ausência de aresta; valor positivo indica peso |
 
 ---
 
@@ -37,6 +39,7 @@ int  grafo_criar(Grafo *grafo, size_t vertices);
 int  grafo_criar_direcionado(Grafo *grafo, size_t vertices, int direcionado);
 void grafo_destruir(Grafo *grafo);
 int  grafo_adicionar_aresta(Grafo *grafo, size_t origem, size_t destino);
+int  grafo_adicionar_aresta_ponderada(Grafo *grafo, size_t origem, size_t destino, int peso);
 int  grafo_remover_aresta(Grafo *grafo, size_t origem, size_t destino);
 int  grafo_tem_aresta(const Grafo *grafo, size_t origem, size_t destino);
 int  grafo_bfs(const Grafo *grafo, size_t inicio, size_t *ordem, size_t capacidade, size_t *visitados);
@@ -45,6 +48,22 @@ int  grafo_dijkstra(const Grafo *grafo, size_t origem, int *distancias, size_t c
 int  grafo_ordenacao_topologica(const Grafo *grafo, size_t *ordem, size_t capacidade, size_t *tamanho_ordem);
 void grafo_imprimir(const Grafo *grafo);
 ```
+
+---
+
+## Operações básicas
+
+### `grafo_adicionar_aresta`
+
+Adiciona uma aresta com peso `1`. É um atalho para `grafo_adicionar_aresta_ponderada(..., 1)`.
+
+### `grafo_adicionar_aresta_ponderada`
+
+Adiciona uma aresta com peso positivo.
+
+- Retorna `0` se os vértices forem inválidos ou se `peso <= 0`.
+- Em grafos não-direcionados, a matriz é preenchida nos dois sentidos.
+- Em grafos direcionados, apenas `origem -> destino` é preenchido.
 
 ---
 
@@ -79,20 +98,18 @@ void grafo_imprimir(const Grafo *grafo);
   - O(V + E) com lista
   - O(V²) com matriz
 
----
+### Dijkstra
 
-## Algoritmos clássicos em grafos
+- Calcula menor caminho a partir de uma origem.
+- Requer pesos **não negativos**; nesta implementação, apenas pesos positivos são aceitos nas arestas.
+- Complexidade desta implementação com matriz: **O(V²)**.
 
-### Menor caminho
-
-- **Dijkstra**: implementado para matriz de adjacência com pesos não negativos.
-- Complexidade desta implementação: **O(V²)**.
-
-### Ordenação Topológica (grafos direcionados acíclicos)
+### Ordenação Topológica
 
 - Implementada com algoritmo de **Kahn** (graus de entrada).
+- Requer grafo direcionado acíclico (DAG).
 - Retorna falha para grafos com ciclo.
-- Complexidade (matriz): **O(V²)**.
+- Complexidade com matriz: **O(V²)**.
 
 ---
 
@@ -115,25 +132,20 @@ void grafo_imprimir(const Grafo *grafo);
 
 int main(void) {
     Grafo grafo;
-    size_t ordem[5];
-    size_t visitados = 0U;
     int distancias[5];
-    size_t topologica[5];
-    size_t total_topologica = 0U;
 
     grafo_criar_direcionado(&grafo, 5U, 1);
-    grafo_adicionar_aresta(&grafo, 0U, 1U);
-    grafo_adicionar_aresta(&grafo, 0U, 2U);
-    grafo_adicionar_aresta(&grafo, 1U, 3U);
-    grafo_adicionar_aresta(&grafo, 2U, 3U);
-    grafo_adicionar_aresta(&grafo, 3U, 4U);
+    grafo_adicionar_aresta_ponderada(&grafo, 0U, 1U, 10);
+    grafo_adicionar_aresta_ponderada(&grafo, 0U, 2U, 3);
+    grafo_adicionar_aresta_ponderada(&grafo, 2U, 1U, 4);
+    grafo_adicionar_aresta_ponderada(&grafo, 1U, 3U, 2);
+    grafo_adicionar_aresta_ponderada(&grafo, 3U, 4U, 7);
 
-    grafo_imprimir(&grafo);
-
-    grafo_bfs(&grafo, 0U, ordem, 5U, &visitados);
-    grafo_dfs(&grafo, 0U, ordem, 5U, &visitados);
     grafo_dijkstra(&grafo, 0U, distancias, 5U);
-    grafo_ordenacao_topologica(&grafo, topologica, 5U, &total_topologica);
+
+    for (size_t i = 0U; i < 5U; ++i) {
+        printf("Distância até %zu: %d\n", i, distancias[i]);
+    }
 
     grafo_destruir(&grafo);
     return 0;
