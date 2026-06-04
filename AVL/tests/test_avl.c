@@ -56,10 +56,54 @@ static void test_duplicados(void) {
     PASS("test_duplicados");
 }
 
+static void test_remover_folha_um_filho_dois_filhos(void) {
+    AVLNo *raiz = NULL;
+    int valores[] = {50, 30, 70, 20, 40, 60, 80, 10, 25};
+    for (size_t i = 0U; i < sizeof(valores) / sizeof(valores[0]); ++i) {
+        raiz = avl_inserir(raiz, valores[i]);
+    }
+
+    raiz = avl_remover(raiz, 10); /* folha */
+    assert(avl_buscar(raiz, 10) == 0);
+    assert(avl_esta_balanceada(raiz) == 1);
+
+    raiz = avl_remover(raiz, 20); /* um filho */
+    assert(avl_buscar(raiz, 20) == 0);
+    assert(avl_esta_balanceada(raiz) == 1);
+
+    raiz = avl_remover(raiz, 70); /* dois filhos */
+    assert(avl_buscar(raiz, 70) == 0);
+    assert(avl_esta_balanceada(raiz) == 1);
+    assert(avl_tamanho(raiz) == 6U);
+
+    avl_destruir(raiz);
+    PASS("test_remover_folha_um_filho_dois_filhos");
+}
+
+static void test_remover_rebalanceando(void) {
+    AVLNo *raiz = NULL;
+    int valores[] = {9, 5, 10, 0, 6, 11, -1, 1, 2};
+    for (size_t i = 0U; i < sizeof(valores) / sizeof(valores[0]); ++i) {
+        raiz = avl_inserir(raiz, valores[i]);
+    }
+
+    raiz = avl_remover(raiz, 10);
+    assert(avl_buscar(raiz, 10) == 0);
+    assert(avl_esta_balanceada(raiz) == 1);
+
+    raiz = avl_remover(raiz, 9);
+    assert(avl_buscar(raiz, 9) == 0);
+    assert(avl_esta_balanceada(raiz) == 1);
+
+    avl_destruir(raiz);
+    PASS("test_remover_rebalanceando");
+}
+
 static void test_nulos(void) {
     int vetor[2];
     size_t tamanho = 0U;
     assert(avl_buscar(NULL, 1) == 0);
+    assert(avl_remover(NULL, 1) == NULL);
     assert(avl_altura(NULL) == 0);
     assert(avl_fator_balanceamento(NULL) == 0);
     assert(avl_esta_balanceada(NULL) == 1);
@@ -70,7 +114,7 @@ static void test_nulos(void) {
 }
 
 static void test_complexidade(void) {
-    assert(strcmp(avl_complexidade(), "Arvore AVL: buscar/inserir O(log n), percurso O(n), espaco O(n).") == 0);
+    assert(strcmp(avl_complexidade(), "Arvore AVL: buscar/inserir/remover O(log n), percurso O(n), espaco O(n).") == 0);
     PASS("test_complexidade");
 }
 
@@ -79,6 +123,8 @@ int main(void) {
     test_inserir_buscar_balancear();
     test_percurso_em_ordem();
     test_duplicados();
+    test_remover_folha_um_filho_dois_filhos();
+    test_remover_rebalanceando();
     test_nulos();
     test_complexidade();
     printf("Todos os testes passaram.\n");
