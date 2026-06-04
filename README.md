@@ -28,6 +28,9 @@ em cada módulo.
 | [Pilha](./Pilha) | [docs/Pilha.md](./docs/Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa | O(1) empilhar/desempilhar |
 | [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra | O(log n) médio, O(n) pior |
 | [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos clássicos | O(1) consulta de aresta |
+| [Métodos de Ordenação](./Métodos%20de%20Ordenação) | [docs/MetodosOrdenacao.md](./docs/MetodosOrdenacao.md) | Bubble, Insertion, Selection, Merge, Quick e Heap Sort para vetores | O(n²) a O(n log n) |
+| [Métodos de Busca](./Métodos%20de%20Busca) | [docs/MetodosBusca.md](./docs/MetodosBusca.md) | Busca Linear, Binária, por Salto, por Interpolação e Exponencial para vetores | O(n) a O(log n) |
+| [Custo Computacional e Complexidade](./Custo%20Computacional%20e%20Complexidade) | [docs/CustoComputacional.md](./docs/CustoComputacional.md) | Introdução ao custo de tempo/espaço, ordens de crescimento e análise assintótica | O(1) a O(2ⁿ) |
 
 ---
 
@@ -119,9 +122,26 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [Árvore Binária de Busca](./docs/Arvore.md)
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
 - [Complexidade (Big-O)](./docs/Algoritmos.md#notação-de-complexidade-big-o)
-- [Métodos de busca](./docs/Algoritmos.md#métodos-de-busca)
-- [Métodos de ordenação](./docs/Algoritmos.md#métodos-de-ordenação)
+- [Custo computacional e complexidade](./docs/CustoComputacional.md)
+- [Métodos de busca para vetores](./docs/MetodosBusca.md)
+- [Métodos de ordenação para vetores](./docs/MetodosOrdenacao.md)
 - [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
+
+## Testes automatizados
+
+Os testes do projeto já existem e estão organizados nas pastas `tests/` de cada
+módulo implementado:
+
+- `Lista/tests/test_lista.c`
+- `Fila/tests/test_fila.c`
+- `Pilha/tests/test_pilha.c`
+- `Árvore/tests/test_arvore.c`
+- `Grafo/tests/test_grafo.c`
+- `Métodos de Ordenação/tests/test_ordenacao.c`
+- `Métodos de Busca/tests/test_busca.c`
+
+Como a pasta **Custo Computacional e Complexidade** é apenas documental, ela não
+precisa de testes automatizados próprios.
 
 ---
 
