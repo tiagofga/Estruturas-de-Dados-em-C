@@ -1,8 +1,12 @@
-# Grafo — Grafo não-direcionado com Matriz de Adjacência
+# Grafo — Grafo direcionado e não-direcionado com Matriz de Adjacência
 
 ## Visão geral
 
-Implementação de um **grafo não-direcionado** em C usando **matriz de adjacência**.
+Implementação de um grafo em C usando **matriz de adjacência**, com suporte a:
+
+- modo **não-direcionado**
+- modo **direcionado**
+- algoritmos principais (BFS, DFS, Dijkstra e ordenação topológica)
 Cada vértice é identificado por um índice inteiro de `0` a `vertices - 1`.
 
 ---
@@ -13,6 +17,7 @@ Cada vértice é identificado por um índice inteiro de `0` a `vertices - 1`.
 /* include/grafo.h */
 typedef struct {
     size_t  vertices;
+    int     direcionado;
     int   **matriz;
 } Grafo;
 ```
@@ -20,6 +25,7 @@ typedef struct {
 | Campo | Tipo | Descrição |
 |-------|------|-----------|
 | `vertices` | `size_t` | Número de vértices |
+| `direcionado` | `int` | `0` para não-direcionado, `1` para direcionado |
 | `matriz` | `int **` | Matriz `V x V` com 0/1 para ausência/presença de aresta |
 
 ---
@@ -28,10 +34,15 @@ typedef struct {
 
 ```c
 int  grafo_criar(Grafo *grafo, size_t vertices);
+int  grafo_criar_direcionado(Grafo *grafo, size_t vertices, int direcionado);
 void grafo_destruir(Grafo *grafo);
 int  grafo_adicionar_aresta(Grafo *grafo, size_t origem, size_t destino);
 int  grafo_remover_aresta(Grafo *grafo, size_t origem, size_t destino);
 int  grafo_tem_aresta(const Grafo *grafo, size_t origem, size_t destino);
+int  grafo_bfs(const Grafo *grafo, size_t inicio, size_t *ordem, size_t capacidade, size_t *visitados);
+int  grafo_dfs(const Grafo *grafo, size_t inicio, size_t *ordem, size_t capacidade, size_t *visitados);
+int  grafo_dijkstra(const Grafo *grafo, size_t origem, int *distancias, size_t capacidade);
+int  grafo_ordenacao_topologica(const Grafo *grafo, size_t *ordem, size_t capacidade, size_t *tamanho_ordem);
 void grafo_imprimir(const Grafo *grafo);
 ```
 
@@ -50,7 +61,7 @@ void grafo_imprimir(const Grafo *grafo);
 
 ---
 
-## Métodos de busca em grafos
+## Algoritmos implementados
 
 ### BFS (Busca em Largura)
 
@@ -74,19 +85,14 @@ void grafo_imprimir(const Grafo *grafo);
 
 ### Menor caminho
 
-- **Dijkstra** (pesos não negativos): O((V + E) log V) com heap.
-- **Bellman-Ford** (aceita pesos negativos): O(V * E).
-- **Floyd-Warshall** (todos os pares): O(V³).
-
-### Árvore Geradora Mínima (MST)
-
-- **Prim**: O(E log V) com heap e lista de adjacência.
-- **Kruskal**: O(E log E) + Union-Find.
+- **Dijkstra**: implementado para matriz de adjacência com pesos não negativos.
+- Complexidade desta implementação: **O(V²)**.
 
 ### Ordenação Topológica (grafos direcionados acíclicos)
 
-- Kahn (graus de entrada) ou DFS pós-ordem.
-- Complexidade: O(V + E).
+- Implementada com algoritmo de **Kahn** (graus de entrada).
+- Retorna falha para grafos com ciclo.
+- Complexidade (matriz): **O(V²)**.
 
 ---
 
@@ -101,13 +107,6 @@ void grafo_imprimir(const Grafo *grafo);
 
 ---
 
-## Métodos de ordenação relacionados a grafos
-
-- **Ordenação topológica** (DAG): ordena vértices por dependência.
-- **Não é ordenação de valores** como Quick/Merge; é ordenação estrutural de nós.
-
----
-
 ## Exemplo de uso
 
 ```c
@@ -116,13 +115,25 @@ void grafo_imprimir(const Grafo *grafo);
 
 int main(void) {
     Grafo grafo;
+    size_t ordem[5];
+    size_t visitados = 0U;
+    int distancias[5];
+    size_t topologica[5];
+    size_t total_topologica = 0U;
 
-    grafo_criar(&grafo, 4U);
+    grafo_criar_direcionado(&grafo, 5U, 1);
     grafo_adicionar_aresta(&grafo, 0U, 1U);
     grafo_adicionar_aresta(&grafo, 0U, 2U);
+    grafo_adicionar_aresta(&grafo, 1U, 3U);
     grafo_adicionar_aresta(&grafo, 2U, 3U);
+    grafo_adicionar_aresta(&grafo, 3U, 4U);
 
     grafo_imprimir(&grafo);
+
+    grafo_bfs(&grafo, 0U, ordem, 5U, &visitados);
+    grafo_dfs(&grafo, 0U, ordem, 5U, &visitados);
+    grafo_dijkstra(&grafo, 0U, distancias, 5U);
+    grafo_ordenacao_topologica(&grafo, topologica, 5U, &total_topologica);
 
     grafo_destruir(&grafo);
     return 0;

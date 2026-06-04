@@ -27,7 +27,7 @@ em cada módulo.
 | [Fila](./Fila) | [docs/Fila.md](./docs/Fila.md) | Fila circular (FIFO) com capacidade fixa | O(1) enfileirar/desenfileirar |
 | [Pilha](./Pilha) | [docs/Pilha.md](./docs/Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa | O(1) empilhar/desempilhar |
 | [Árvore](./Árvore) | [docs/Arvore.md](./docs/Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra | O(log n) médio, O(n) pior |
-| [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos clássicos | O(1) consulta de aresta |
+| [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo direcionado e não-direcionado com matriz de adjacência + BFS/DFS/Dijkstra/topológica | O(1) consulta de aresta |
 | [Métodos de Ordenação](./Métodos%20de%20Ordenação) | [docs/MetodosOrdenacao.md](./docs/MetodosOrdenacao.md) | Bubble, Insertion, Selection, Merge, Quick e Heap Sort para vetores | O(n²) a O(n log n) |
 | [Métodos de Busca](./Métodos%20de%20Busca) | [docs/MetodosBusca.md](./docs/MetodosBusca.md) | Busca Linear, Binária, por Salto, por Interpolação e Exponencial para vetores | O(n) a O(log n) |
 | [Custo Computacional e Complexidade](./Custo%20Computacional%20e%20Complexidade) | [docs/CustoComputacional.md](./docs/CustoComputacional.md) | Introdução ao custo de tempo/espaço, ordens de crescimento e análise assintótica | O(1) a O(2ⁿ) |
