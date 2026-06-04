@@ -28,6 +28,8 @@ int grafo_criar_direcionado(Grafo *grafo, size_t vertices, int direcionado) {
             }
             free(grafo->matriz);
             grafo->matriz = NULL;
+            grafo->vertices = 0;
+            grafo->direcionado = 0;
             return 0;
         }
     }
@@ -51,13 +53,17 @@ void grafo_destruir(Grafo *grafo) {
 }
 
 int grafo_adicionar_aresta(Grafo *grafo, size_t origem, size_t destino) {
-    if (grafo == NULL || grafo->matriz == NULL || origem >= grafo->vertices || destino >= grafo->vertices) {
+    return grafo_adicionar_aresta_ponderada(grafo, origem, destino, 1);
+}
+
+int grafo_adicionar_aresta_ponderada(Grafo *grafo, size_t origem, size_t destino, int peso) {
+    if (grafo == NULL || grafo->matriz == NULL || origem >= grafo->vertices || destino >= grafo->vertices || peso <= 0) {
         return 0;
     }
 
-    grafo->matriz[origem][destino] = 1;
+    grafo->matriz[origem][destino] = peso;
     if (!grafo->direcionado) {
-        grafo->matriz[destino][origem] = 1;
+        grafo->matriz[destino][origem] = peso;
     }
     return 1;
 }
