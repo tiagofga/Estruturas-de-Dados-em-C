@@ -1,37 +1,27 @@
 .RECIPEPREFIX := >
 
-.PHONY: all test clean \
-        run-lista run-fila run-pilha run-arvore run-grafo run-heap run-ordenacao run-busca
+MODULES := Lista Fila Pilha Árvore Grafo Heap TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL
+QUOTED_MODULES := "Métodos de Ordenação" "Métodos de Busca"
+
+.PHONY: all test sanitize clean \
+        run-lista run-fila run-pilha run-arvore run-grafo run-heap \
+        run-tabela-hash run-lista-encadeada run-lista-dupla run-grafo-lista run-avl \
+        run-ordenacao run-busca
 
 all:
->$(MAKE) -C Lista
->$(MAKE) -C Fila
->$(MAKE) -C Pilha
->$(MAKE) -C Árvore
->$(MAKE) -C Grafo
->$(MAKE) -C Heap
->$(MAKE) -C "Métodos de Ordenação"
->$(MAKE) -C "Métodos de Busca"
+>@for module in $(MODULES); do $(MAKE) -C $$module || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module || exit 1; done
 
 test:
->$(MAKE) -C Lista test
->$(MAKE) -C Fila test
->$(MAKE) -C Pilha test
->$(MAKE) -C Árvore test
->$(MAKE) -C Grafo test
->$(MAKE) -C Heap test
->$(MAKE) -C "Métodos de Ordenação" test
->$(MAKE) -C "Métodos de Busca" test
+>@for module in $(MODULES); do $(MAKE) -C $$module test || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module test || exit 1; done
+
+sanitize:
+>@for module in TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL Heap; do $(MAKE) -C $$module sanitize || exit 1; done
 
 clean:
->$(MAKE) -C Lista clean
->$(MAKE) -C Fila clean
->$(MAKE) -C Pilha clean
->$(MAKE) -C Árvore clean
->$(MAKE) -C Grafo clean
->$(MAKE) -C Heap clean
->$(MAKE) -C "Métodos de Ordenação" clean
->$(MAKE) -C "Métodos de Busca" clean
+>@for module in $(MODULES); do $(MAKE) -C $$module clean || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module clean || exit 1; done
 
 run-lista:
 >$(MAKE) -C Lista run
@@ -50,6 +40,21 @@ run-grafo:
 
 run-heap:
 >$(MAKE) -C Heap run
+
+run-tabela-hash:
+>$(MAKE) -C TabelaHash run
+
+run-lista-encadeada:
+>$(MAKE) -C ListaEncadeada run
+
+run-lista-dupla:
+>$(MAKE) -C ListaDuplamenteEncadeada run
+
+run-grafo-lista:
+>$(MAKE) -C GrafoListaAdjacencia run
+
+run-avl:
+>$(MAKE) -C AVL run
 
 run-ordenacao:
 >$(MAKE) -C "Métodos de Ordenação" run
