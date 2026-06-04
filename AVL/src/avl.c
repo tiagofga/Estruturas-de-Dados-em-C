@@ -53,6 +53,32 @@ static AVLNo *rotacao_esquerda(AVLNo *x) {
     return y;
 }
 
+static AVLNo *rebalancear(AVLNo *raiz) {
+    if (raiz == NULL) {
+        return NULL;
+    }
+
+    atualizar_altura(raiz);
+    int balanceamento = avl_fator_balanceamento(raiz);
+
+    if (balanceamento > 1 && avl_fator_balanceamento(raiz->esquerda) >= 0) {
+        return rotacao_direita(raiz);
+    }
+    if (balanceamento > 1 && avl_fator_balanceamento(raiz->esquerda) < 0) {
+        raiz->esquerda = rotacao_esquerda(raiz->esquerda);
+        return rotacao_direita(raiz);
+    }
+    if (balanceamento < -1 && avl_fator_balanceamento(raiz->direita) <= 0) {
+        return rotacao_esquerda(raiz);
+    }
+    if (balanceamento < -1 && avl_fator_balanceamento(raiz->direita) > 0) {
+        raiz->direita = rotacao_direita(raiz->direita);
+        return rotacao_esquerda(raiz);
+    }
+
+    return raiz;
+}
+
 AVLNo *avl_inserir(AVLNo *raiz, int valor) {
     if (raiz == NULL) {
         return novo_no(valor);
@@ -74,25 +100,39 @@ AVLNo *avl_inserir(AVLNo *raiz, int valor) {
         return raiz;
     }
 
-    atualizar_altura(raiz);
-    int balanceamento = avl_fator_balanceamento(raiz);
+    return rebalancear(raiz);
+}
 
-    if (balanceamento > 1 && valor < raiz->esquerda->valor) {
-        return rotacao_direita(raiz);
+static AVLNo *menor_no(AVLNo *raiz) {
+    AVLNo *atual = raiz;
+    while (atual != NULL && atual->esquerda != NULL) {
+        atual = atual->esquerda;
     }
-    if (balanceamento < -1 && valor > raiz->direita->valor) {
-        return rotacao_esquerda(raiz);
-    }
-    if (balanceamento > 1 && valor > raiz->esquerda->valor) {
-        raiz->esquerda = rotacao_esquerda(raiz->esquerda);
-        return rotacao_direita(raiz);
-    }
-    if (balanceamento < -1 && valor < raiz->direita->valor) {
-        raiz->direita = rotacao_direita(raiz->direita);
-        return rotacao_esquerda(raiz);
+    return atual;
+}
+
+AVLNo *avl_remover(AVLNo *raiz, int valor) {
+    if (raiz == NULL) {
+        return NULL;
     }
 
-    return raiz;
+    if (valor < raiz->valor) {
+        raiz->esquerda = avl_remover(raiz->esquerda, valor);
+    } else if (valor > raiz->valor) {
+        raiz->direita = avl_remover(raiz->direita, valor);
+    } else {
+        if (raiz->esquerda == NULL || raiz->direita == NULL) {
+            AVLNo *filho = raiz->esquerda != NULL ? raiz->esquerda : raiz->direita;
+            free(raiz);
+            return filho;
+        }
+
+        AVLNo *sucessor = menor_no(raiz->direita);
+        raiz->valor = sucessor->valor;
+        raiz->direita = avl_remover(raiz->direita, sucessor->valor);
+    }
+
+    return rebalancear(raiz);
 }
 
 int avl_buscar(const AVLNo *raiz, int valor) {
@@ -156,5 +196,5 @@ void avl_destruir(AVLNo *raiz) {
 }
 
 const char *avl_complexidade(void) {
-    return "Arvore AVL: buscar/inserir O(log n), percurso O(n), espaco O(n).";
+    return "Arvore AVL: buscar/inserir/remover O(log n), percurso O(n), espaco O(n).";
 }
