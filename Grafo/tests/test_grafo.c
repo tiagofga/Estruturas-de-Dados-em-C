@@ -63,6 +63,7 @@ static void test_aresta_invalida(void) {
     assert(grafo_criar(&grafo, 3U) == 1);
 
     assert(grafo_adicionar_aresta(&grafo, 0U, 5U) == 0);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 0U, 1U, 0) == 0);
     assert(grafo_remover_aresta(&grafo, 5U, 0U) == 0);
     assert(grafo_tem_aresta(&grafo, 5U, 0U) == 0);
 
@@ -98,6 +99,19 @@ static void test_grafo_direcionado(void) {
 
     grafo_destruir(&grafo);
     PASS("test_grafo_direcionado");
+}
+
+static void test_aresta_ponderada(void) {
+    Grafo grafo;
+    assert(grafo_criar(&grafo, 3U) == 1);
+
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 0U, 1U, 7) == 1);
+    assert(grafo_tem_aresta(&grafo, 0U, 1U) == 7);
+    assert(grafo_tem_aresta(&grafo, 1U, 0U) == 7);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 0U, 2U, -1) == 0);
+
+    grafo_destruir(&grafo);
+    PASS("test_aresta_ponderada");
 }
 
 static void montar_dag_exemplo(Grafo *grafo) {
@@ -151,14 +165,20 @@ static void test_dijkstra(void) {
     Grafo grafo;
     int distancias[5];
 
-    montar_dag_exemplo(&grafo);
+    assert(grafo_criar_direcionado(&grafo, 5U, 1) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 0U, 1U, 10) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 0U, 2U, 3) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 2U, 1U, 4) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 1U, 3U, 2) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 2U, 3U, 8) == 1);
+    assert(grafo_adicionar_aresta_ponderada(&grafo, 3U, 4U, 7) == 1);
 
     assert(grafo_dijkstra(&grafo, 0U, distancias, 5U) == 1);
     assert(distancias[0] == 0);
-    assert(distancias[1] == 1);
-    assert(distancias[2] == 1);
-    assert(distancias[3] == 2);
-    assert(distancias[4] == 3);
+    assert(distancias[1] == 7);
+    assert(distancias[2] == 3);
+    assert(distancias[3] == 9);
+    assert(distancias[4] == 16);
 
     assert(grafo_dijkstra(&grafo, 5U, distancias, 5U) == 0);
     assert(grafo_dijkstra(&grafo, 0U, distancias, 4U) == 0);
@@ -204,6 +224,7 @@ int main(void) {
     test_aresta_invalida();
     test_grafo_sem_arestas();
     test_grafo_direcionado();
+    test_aresta_ponderada();
     test_bfs();
     test_dfs();
     test_dijkstra();
