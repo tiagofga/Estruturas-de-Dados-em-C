@@ -32,7 +32,7 @@ $(APP_DIR)/$(TEST_TARGET): $(LIB_OBJECTS) $(TEST_OBJECTS)
 >@mkdir -p $(@D)
 >$(CC) $(CCFLAGS) $(INCLUDE) -o $@ $^ $(LDFLAGS)
 
-.PHONY: all build clean debug release run test
+.PHONY: all build clean debug release sanitize run test
 
 build:
 >@mkdir -p $(APP_DIR)
@@ -43,6 +43,10 @@ debug: all
 
 release: CCFLAGS += -O3
 release: all
+
+sanitize: CCFLAGS += -g -fsanitize=address,undefined -fno-omit-frame-pointer
+sanitize: LDFLAGS += -fsanitize=address,undefined
+sanitize: clean test
 
 clean:
 >-@rm -rvf $(OBJ_DIR)/*
