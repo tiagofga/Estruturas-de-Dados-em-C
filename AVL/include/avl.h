@@ -11,6 +11,7 @@ typedef struct AVLNo {
 } AVLNo;
 
 AVLNo *avl_inserir(AVLNo *raiz, int valor);
+AVLNo *avl_remover(AVLNo *raiz, int valor);
 int avl_buscar(const AVLNo *raiz, int valor);
 int avl_altura(const AVLNo *raiz);
 int avl_fator_balanceamento(const AVLNo *raiz);
