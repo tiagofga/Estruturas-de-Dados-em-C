@@ -1,4 +1,4 @@
-# Documentação — Estruturas de Dados em C
+# Documentação — Estruturas de Dados e Algoritmos em C
 
 Referência completa de cada módulo do repositório.
 
@@ -8,8 +8,9 @@ Referência completa de cada módulo do repositório.
 | [Lista](./Lista.md) | Lista sequencial dinâmica com redimensionamento automático |
 | [Fila](./Fila.md) | Fila circular (FIFO) com capacidade fixa |
 | [Pilha](./Pilha.md) | Pilha sequencial (LIFO) com capacidade fixa |
+| [Heap](./Heap.md) | Heap máximo dinâmico, fila de prioridade e Heap Sort |
 | [Árvore](./Arvore.md) | Árvore Binária de Busca (BST) + conceitos AVL/Rubro-Negra |
-| [Grafo](./Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos de grafos |
+| [Grafo](./Grafo.md) | Grafo direcionado/não-direcionado com matriz de adjacência + algoritmos de grafos |
 | [Complexidade (Big-O)](./Algoritmos.md#notação-de-complexidade-big-o) | Fundamentos de análise de complexidade de tempo e espaço |
 | [Custo computacional e complexidade](./CustoComputacional.md) | Material dedicado a custo de tempo/espaço, análise assintótica e ordens de crescimento |
 | [Métodos de busca para vetores](./MetodosBusca.md) | Complexidade e custo de métodos de busca sequencial e ordenada |
