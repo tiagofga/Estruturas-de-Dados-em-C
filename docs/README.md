@@ -1,5 +1,7 @@
 # Documentação — Estruturas de Dados e Algoritmos em C
 
+**Português** | [English](./en/README.md)
+
 Referência completa de cada módulo do repositório.
 
 | Módulo | Descrição |
