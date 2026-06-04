@@ -30,6 +30,7 @@ em cada módulo.
 | [Grafo](./Grafo) | [docs/Grafo.md](./docs/Grafo.md) | Grafo não-direcionado com matriz de adjacência + algoritmos clássicos | O(1) consulta de aresta |
 | [Métodos de Ordenação](./Métodos%20de%20Ordenação) | [docs/MetodosOrdenacao.md](./docs/MetodosOrdenacao.md) | Bubble, Insertion, Selection, Merge, Quick e Heap Sort para vetores | O(n²) a O(n log n) |
 | [Métodos de Busca](./Métodos%20de%20Busca) | [docs/MetodosBusca.md](./docs/MetodosBusca.md) | Busca Linear, Binária, por Salto, por Interpolação e Exponencial para vetores | O(n) a O(log n) |
+| [Custo Computacional e Complexidade](./Custo%20Computacional%20e%20Complexidade) | [Custo Computacional e Complexidade/README.md](./Custo%20Computacional%20e%20Complexidade/README.md) | Introdução ao custo de tempo/espaço e às ordens de complexidade (Big-O) | O(1) a O(n²)+ |
 
 ---
 
@@ -121,6 +122,7 @@ A pasta [`docs/`](./docs) contém a documentação completa de cada módulo:
 - [Árvore Binária de Busca](./docs/Arvore.md)
 - [Grafo com matriz de adjacência](./docs/Grafo.md)
 - [Complexidade (Big-O)](./docs/Algoritmos.md#notação-de-complexidade-big-o)
+- [Pasta de custo computacional e complexidade](./Custo%20Computacional%20e%20Complexidade/README.md)
 - [Métodos de busca para vetores](./docs/MetodosBusca.md)
 - [Métodos de ordenação para vetores](./docs/MetodosOrdenacao.md)
 - [Lista/Fila/Pilha estática vs dinâmica](./docs/EstaticoVsDinamico.md)
