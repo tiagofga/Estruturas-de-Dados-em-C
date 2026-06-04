@@ -32,7 +32,7 @@ No *arvore_inserir(No *raiz, int valor) {
 
     No *novo_no = malloc(sizeof(No));
     if (novo_no == NULL) {
-        return NULL;
+        return raiz;
     }
 
     novo_no->valor = valor;
