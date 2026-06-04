@@ -18,7 +18,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        module: [Lista, Fila, Pilha, Heap, Árvore, Grafo, "Métodos de Ordenação", "Métodos de Busca"]
+        module:
+          - Lista
+          - Fila
+          - Pilha
+          - Heap
+          - Árvore
+          - Grafo
+          - TabelaHash
+          - ListaEncadeada
+          - ListaDuplamenteEncadeada
+          - GrafoListaAdjacencia
+          - AVL
+          - Métodos de Ordenação
+          - Métodos de Busca
 
     steps:
       - name: Checkout
@@ -29,3 +42,26 @@ jobs:
 
       - name: Test module
         run: make -C "${{ matrix.module }}" test
+
+  sanitizer:
+    runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - Heap
+          - TabelaHash
+          - ListaEncadeada
+          - ListaDuplamenteEncadeada
+          - GrafoListaAdjacencia
+          - AVL
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run sanitizer tests
+        run: make -C "${{ matrix.module }}" sanitize
