@@ -9,19 +9,19 @@ QUOTED_MODULES := "Métodos de Ordenação" "Métodos de Busca"
         run-ordenacao run-busca
 
 all:
->@for module in $(MODULES); do $(MAKE) -C $$module || exit 1; done
->@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module || exit 1; done
+>@for module in $(MODULES); do $(MAKE) -C "$$module" || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C "$$module" || exit 1; done
 
 test:
->@for module in $(MODULES); do $(MAKE) -C $$module test || exit 1; done
->@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module test || exit 1; done
+>@for module in $(MODULES); do $(MAKE) -C "$$module" test || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C "$$module" test || exit 1; done
 
 sanitize:
->@for module in TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL Heap; do $(MAKE) -C $$module sanitize || exit 1; done
+>@for module in TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL Heap; do $(MAKE) -C "$$module" sanitize || exit 1; done
 
 clean:
->@for module in $(MODULES); do $(MAKE) -C $$module clean || exit 1; done
->@for module in $(QUOTED_MODULES); do $(MAKE) -C $$module clean || exit 1; done
+>@for module in $(MODULES); do $(MAKE) -C "$$module" clean || exit 1; done
+>@for module in $(QUOTED_MODULES); do $(MAKE) -C "$$module" clean || exit 1; done
 
 run-lista:
 >$(MAKE) -C Lista run
