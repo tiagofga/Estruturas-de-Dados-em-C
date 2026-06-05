@@ -1,11 +1,11 @@
 .RECIPEPREFIX := >
 
-MODULES := Lista Fila Pilha Árvore Grafo Heap TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL
+MODULES := Lista Fila Pilha Árvore Grafo Heap TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL AlgoritmosGrafos
 QUOTED_MODULES := "Métodos de Ordenação" "Métodos de Busca"
 
 .PHONY: all test sanitize clean \
         run-lista run-fila run-pilha run-arvore run-grafo run-heap \
-        run-tabela-hash run-lista-encadeada run-lista-dupla run-grafo-lista run-avl \
+        run-tabela-hash run-lista-encadeada run-lista-dupla run-grafo-lista run-avl run-algoritmos-grafos \
         run-ordenacao run-busca
 
 all:
@@ -17,7 +17,7 @@ test:
 >@for module in $(QUOTED_MODULES); do $(MAKE) -C "$$module" test || exit 1; done
 
 sanitize:
->@for module in TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL Heap; do $(MAKE) -C "$$module" sanitize || exit 1; done
+>@for module in TabelaHash ListaEncadeada ListaDuplamenteEncadeada GrafoListaAdjacencia AVL Heap AlgoritmosGrafos; do $(MAKE) -C "$$module" sanitize || exit 1; done
 
 clean:
 >@for module in $(MODULES); do $(MAKE) -C "$$module" clean || exit 1; done
@@ -55,6 +55,9 @@ run-grafo-lista:
 
 run-avl:
 >$(MAKE) -C AVL run
+
+run-algoritmos-grafos:
+>$(MAKE) -C AlgoritmosGrafos run
 
 run-ordenacao:
 >$(MAKE) -C "Métodos de Ordenação" run
