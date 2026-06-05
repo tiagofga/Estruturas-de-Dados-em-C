@@ -3,17 +3,9 @@
 
 #include <stddef.h>
 
-typedef struct ListaEncadeadaNo {
-    int valor;
-    struct ListaEncadeadaNo *proximo;
-} ListaEncadeadaNo;
+typedef struct ListaEncadeada ListaEncadeada;
 
-typedef struct {
-    ListaEncadeadaNo *inicio;
-    size_t tamanho;
-} ListaEncadeada;
-
-void lista_encadeada_criar(ListaEncadeada *lista);
+ListaEncadeada *lista_encadeada_criar(void);
 void lista_encadeada_destruir(ListaEncadeada *lista);
 int lista_encadeada_inserir_inicio(ListaEncadeada *lista, int valor);
 int lista_encadeada_inserir_fim(ListaEncadeada *lista, int valor);
