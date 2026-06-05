@@ -36,6 +36,12 @@
 *.x86_64
 *.hex
 
+# Coverage artifacts
+*.gcda
+*.gcno
+*.gcov
+coverage/
+
 # Debug files
 *.dSYM/
 *.su
@@ -53,7 +59,6 @@ dkms.conf
 
 *~
 nbproject
-
 
 # Created by https://www.gitignore.io/api/c,c++,linux,netbeans,visualstudiocode
 
@@ -95,6 +100,12 @@ nbproject
 *.i*86
 *.x86_64
 *.hex
+
+# Coverage artifacts
+*.gcda
+*.gcno
+*.gcov
+coverage/
 
 # Debug files
 *.dSYM/
@@ -142,7 +153,7 @@ dkms.conf
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
-# .nfs files are created when an open file is removed but is still being accessed
+# .nfs files are created when an open file is removed but still accessed
 .nfs*
 
 ### NetBeans ###
@@ -160,9 +171,7 @@ nbdist/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-
 # End of https://www.gitignore.io/api/c,c++,linux,netbeans,visualstudiocode
-
 
 # Build artifacts from data structure modules
 */build/
