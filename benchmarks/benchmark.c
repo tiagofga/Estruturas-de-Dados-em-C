@@ -30,26 +30,26 @@ static void bench_avl(void) {
 }
 
 static void bench_tabela_hash(void) {
-    TabelaHash tabela;
-    if (!tabela_hash_criar(&tabela, 10007U)) {
+    TabelaHash *tabela = tabela_hash_criar(10007U);
+    if (tabela == NULL) {
         fprintf(stderr, "failed to create hash table\n");
         return;
     }
 
     clock_t start = clock();
     for (int i = 0; i < BENCH_SIZE; ++i) {
-        (void)tabela_hash_inserir(&tabela, i, i * 2);
+        (void)tabela_hash_inserir(tabela, i, i * 2);
     }
     for (int i = 0; i < BENCH_SIZE; ++i) {
         int valor = 0;
-        (void)tabela_hash_buscar(&tabela, i, &valor);
+        (void)tabela_hash_buscar(tabela, i, &valor);
     }
     for (int i = 0; i < BENCH_SIZE; i += 2) {
-        (void)tabela_hash_remover(&tabela, i);
+        (void)tabela_hash_remover(tabela, i);
     }
     clock_t end = clock();
     printf("TabelaHash,%d,insert+search+remove_half,%.3f\n", BENCH_SIZE, elapsed_ms(start, end));
-    tabela_hash_destruir(&tabela);
+    tabela_hash_destruir(tabela);
 }
 
 static void bench_kruskal(void) {
