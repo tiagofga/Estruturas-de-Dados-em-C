@@ -3,12 +3,7 @@
 
 #include <stddef.h>
 
-typedef struct AVLNo {
-    int valor;
-    int altura;
-    struct AVLNo *esquerda;
-    struct AVLNo *direita;
-} AVLNo;
+typedef struct AVLNo AVLNo;
 
 AVLNo *avl_inserir(AVLNo *raiz, int valor);
 AVLNo *avl_remover(AVLNo *raiz, int valor);
