@@ -23,14 +23,10 @@ typedef struct {
     int peso;
 } ArestaPeso;
 
-typedef struct {
-    size_t *pai;
-    size_t *rank;
-    size_t tamanho;
-} UnionFind;
+typedef struct UnionFind UnionFind;
 ```
 
-`ArestaPeso` represents a weighted edge. `UnionFind` represents disjoint sets with path compression and union by rank.
+`ArestaPeso` represents a weighted edge. `UnionFind` is an opaque ADT for disjoint sets: its internal fields remain private in the `.c` file.
 
 ---
 
@@ -41,11 +37,21 @@ Union-Find maintains disjoint components and quickly answers whether two vertice
 Operations:
 
 ```c
-int union_find_criar(UnionFind *uf, size_t tamanho);
+UnionFind *union_find_criar(size_t tamanho);
 void union_find_destruir(UnionFind *uf);
 size_t union_find_encontrar(UnionFind *uf, size_t elemento);
 int union_find_unir(UnionFind *uf, size_t a, size_t b);
 int union_find_mesmo_conjunto(UnionFind *uf, size_t a, size_t b);
+```
+
+Example:
+
+```c
+UnionFind *uf = union_find_criar(10);
+if (uf != NULL) {
+    union_find_unir(uf, 0, 1);
+    union_find_destruir(uf);
+}
 ```
 
 Amortized complexity: almost O(1), usually represented as O(α(n)), where α is the inverse Ackermann function.
