@@ -2,7 +2,19 @@
 
 ## Lista simplesmente encadeada
 
-A lista simplesmente encadeada armazena nós com um valor e um ponteiro para o próximo nó.
+A lista simplesmente encadeada armazena nós com um valor e um ponteiro para o próximo nó. No módulo `ListaEncadeada`, o tipo `ListaEncadeada` é opaco no header público: a alocação, os nós e os campos internos ficam privados na implementação.
+
+### Operações principais
+
+```c
+ListaEncadeada *lista_encadeada_criar(void);
+void lista_encadeada_destruir(ListaEncadeada *lista);
+int lista_encadeada_inserir_inicio(ListaEncadeada *lista, int valor);
+int lista_encadeada_inserir_fim(ListaEncadeada *lista, int valor);
+int lista_encadeada_remover(ListaEncadeada *lista, int valor);
+int lista_encadeada_buscar(const ListaEncadeada *lista, int valor);
+size_t lista_encadeada_tamanho(const ListaEncadeada *lista);
+```
 
 ### Complexidade
 
