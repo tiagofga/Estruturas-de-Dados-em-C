@@ -12,13 +12,9 @@ typedef struct {
     int peso;
 } ArestaPeso;
 
-typedef struct {
-    size_t *pai;
-    size_t *rank;
-    size_t tamanho;
-} UnionFind;
+typedef struct UnionFind UnionFind;
 
-int union_find_criar(UnionFind *uf, size_t tamanho);
+UnionFind *union_find_criar(size_t tamanho);
 void union_find_destruir(UnionFind *uf);
 size_t union_find_encontrar(UnionFind *uf, size_t elemento);
 int union_find_unir(UnionFind *uf, size_t a, size_t b);
