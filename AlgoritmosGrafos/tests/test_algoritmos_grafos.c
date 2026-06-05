@@ -7,14 +7,14 @@
 #define PASS(nome) printf("  [OK] %s\n", nome)
 
 static void test_union_find(void) {
-    UnionFind uf;
-    assert(union_find_criar(&uf, 5U) == 1);
-    assert(union_find_unir(&uf, 0U, 1U) == 1);
-    assert(union_find_unir(&uf, 1U, 2U) == 1);
-    assert(union_find_mesmo_conjunto(&uf, 0U, 2U) == 1);
-    assert(union_find_mesmo_conjunto(&uf, 0U, 3U) == 0);
-    assert(union_find_unir(&uf, 0U, 2U) == 0);
-    union_find_destruir(&uf);
+    UnionFind *uf = union_find_criar(5U);
+    assert(uf != NULL);
+    assert(union_find_unir(uf, 0U, 1U) == 1);
+    assert(union_find_unir(uf, 1U, 2U) == 1);
+    assert(union_find_mesmo_conjunto(uf, 0U, 2U) == 1);
+    assert(union_find_mesmo_conjunto(uf, 0U, 3U) == 0);
+    assert(union_find_unir(uf, 0U, 2U) == 0);
+    union_find_destruir(uf);
     PASS("test_union_find");
 }
 
@@ -86,14 +86,14 @@ static void test_floyd_warshall(void) {
 }
 
 static void test_invalidos(void) {
-    UnionFind uf;
     ArestaPeso arestas[1] = {{0U, 1U, 1}};
     ArestaPeso mst[1];
     size_t quantidade = 0U;
     int peso_total = 0;
     int distancias[2];
-    assert(union_find_criar(NULL, 2U) == 0);
-    assert(union_find_criar(&uf, 0U) == 0);
+    assert(union_find_criar(0U) == NULL);
+    assert(union_find_unir(NULL, 0U, 1U) == 0);
+    assert(union_find_encontrar(NULL, 0U) == (size_t)-1);
     assert(kruskal(0U, arestas, 1U, mst, 1U, &quantidade, &peso_total) == 0);
     assert(prim_matriz(0U, NULL, mst, 1U, &quantidade, &peso_total) == 0);
     assert(bellman_ford(2U, arestas, 1U, 2U, distancias) == 0);
