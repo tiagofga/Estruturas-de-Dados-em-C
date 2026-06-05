@@ -3,19 +3,9 @@
 
 #include <stddef.h>
 
-typedef struct TabelaHashItem {
-    int chave;
-    int valor;
-    struct TabelaHashItem *proximo;
-} TabelaHashItem;
+typedef struct TabelaHash TabelaHash;
 
-typedef struct {
-    TabelaHashItem **baldes;
-    size_t capacidade;
-    size_t tamanho;
-} TabelaHash;
-
-int tabela_hash_criar(TabelaHash *tabela, size_t capacidade);
+TabelaHash *tabela_hash_criar(size_t capacidade);
 void tabela_hash_destruir(TabelaHash *tabela);
 int tabela_hash_inserir(TabelaHash *tabela, int chave, int valor);
 int tabela_hash_buscar(const TabelaHash *tabela, int chave, int *valor);
