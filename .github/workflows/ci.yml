@@ -30,6 +30,7 @@ jobs:
           - ListaDuplamenteEncadeada
           - GrafoListaAdjacencia
           - AVL
+          - AlgoritmosGrafos
           - Métodos de Ordenação
           - Métodos de Busca
 
@@ -58,6 +59,7 @@ jobs:
           - ListaDuplamenteEncadeada
           - GrafoListaAdjacencia
           - AVL
+          - AlgoritmosGrafos
 
     steps:
       - name: Checkout
