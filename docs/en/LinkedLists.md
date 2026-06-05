@@ -2,17 +2,18 @@
 
 ## Singly linked list
 
-A singly linked list stores nodes containing a value and a pointer to the next node.
+A singly linked list stores values in connected nodes. The `ListaEncadeada` module now uses an opaque public type. Client code creates a list with `lista_encadeada_criar()` and releases it with `lista_encadeada_destruir()`.
 
 ### Main operations
 
 ```c
-void lista_encadeada_criar(ListaEncadeada *lista);
+ListaEncadeada *lista_encadeada_criar(void);
 void lista_encadeada_destruir(ListaEncadeada *lista);
 int lista_encadeada_inserir_inicio(ListaEncadeada *lista, int valor);
 int lista_encadeada_inserir_fim(ListaEncadeada *lista, int valor);
 int lista_encadeada_remover(ListaEncadeada *lista, int valor);
 int lista_encadeada_buscar(const ListaEncadeada *lista, int valor);
+size_t lista_encadeada_tamanho(const ListaEncadeada *lista);
 ```
 
 ### Complexity
@@ -27,7 +28,7 @@ int lista_encadeada_buscar(const ListaEncadeada *lista, int valor);
 
 ## Doubly linked list
 
-A doubly linked list stores nodes with pointers to both the previous and next nodes. This enables traversal in both directions.
+The double linked list module keeps the original educational interface.
 
 ### Main operations
 
@@ -52,4 +53,4 @@ int lista_dupla_buscar(const ListaDupla *lista, int valor);
 
 ## Comparison
 
-A singly linked list is smaller and simpler. A doubly linked list uses more memory per node but makes reverse traversal and operations near the tail easier.
+The singly linked list is smaller and simpler. The double linked list uses more memory per node, but supports traversal in both directions.
