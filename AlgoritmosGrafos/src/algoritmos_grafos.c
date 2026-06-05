@@ -2,29 +2,37 @@
 
 #include <stdlib.h>
 
+struct UnionFind {
+    size_t *pai;
+    size_t *rank;
+    size_t tamanho;
+};
+
 static int aresta_valida(const ArestaPeso *aresta, size_t vertices) {
     return aresta != NULL && aresta->origem < vertices && aresta->destino < vertices;
 }
 
-int union_find_criar(UnionFind *uf, size_t tamanho) {
-    if (uf == NULL || tamanho == 0U) {
-        return 0;
+UnionFind *union_find_criar(size_t tamanho) {
+    if (tamanho == 0U) {
+        return NULL;
+    }
+    UnionFind *uf = malloc(sizeof(*uf));
+    if (uf == NULL) {
+        return NULL;
     }
     uf->pai = malloc(tamanho * sizeof(*uf->pai));
     uf->rank = calloc(tamanho, sizeof(*uf->rank));
     if (uf->pai == NULL || uf->rank == NULL) {
         free(uf->pai);
         free(uf->rank);
-        uf->pai = NULL;
-        uf->rank = NULL;
-        uf->tamanho = 0U;
-        return 0;
+        free(uf);
+        return NULL;
     }
     uf->tamanho = tamanho;
     for (size_t i = 0U; i < tamanho; ++i) {
         uf->pai[i] = i;
     }
-    return 1;
+    return uf;
 }
 
 void union_find_destruir(UnionFind *uf) {
@@ -33,9 +41,7 @@ void union_find_destruir(UnionFind *uf) {
     }
     free(uf->pai);
     free(uf->rank);
-    uf->pai = NULL;
-    uf->rank = NULL;
-    uf->tamanho = 0U;
+    free(uf);
 }
 
 size_t union_find_encontrar(UnionFind *uf, size_t elemento) {
@@ -106,8 +112,8 @@ int kruskal(size_t vertices,
     }
     qsort(ordenadas, quantidade_arestas, sizeof(*ordenadas), comparar_arestas);
 
-    UnionFind uf;
-    if (!union_find_criar(&uf, vertices)) {
+    UnionFind *uf = union_find_criar(vertices);
+    if (uf == NULL) {
         free(ordenadas);
         return 0;
     }
@@ -115,14 +121,14 @@ int kruskal(size_t vertices,
     *quantidade_arvore = 0U;
     *peso_total = 0;
     for (size_t i = 0U; i < quantidade_arestas && *quantidade_arvore < vertices - 1U; ++i) {
-        if (union_find_unir(&uf, ordenadas[i].origem, ordenadas[i].destino)) {
+        if (union_find_unir(uf, ordenadas[i].origem, ordenadas[i].destino)) {
             arvore_geradora_minima[*quantidade_arvore] = ordenadas[i];
             ++(*quantidade_arvore);
             *peso_total += ordenadas[i].peso;
         }
     }
 
-    union_find_destruir(&uf);
+    union_find_destruir(uf);
     free(ordenadas);
     return *quantidade_arvore == vertices - 1U;
 }
