@@ -7,36 +7,37 @@
 #define PASS(nome) printf("  [OK] %s\n", nome)
 
 static void test_criar_inserir_buscar(void) {
-    ListaEncadeada lista;
-    lista_encadeada_criar(&lista);
-    assert(lista_encadeada_tamanho(&lista) == 0U);
-    assert(lista_encadeada_inserir_inicio(&lista, 2) == 1);
-    assert(lista_encadeada_inserir_inicio(&lista, 1) == 1);
-    assert(lista_encadeada_inserir_fim(&lista, 3) == 1);
-    assert(lista_encadeada_tamanho(&lista) == 3U);
-    assert(lista_encadeada_buscar(&lista, 1) == 1);
-    assert(lista_encadeada_buscar(&lista, 3) == 1);
-    assert(lista_encadeada_buscar(&lista, 99) == 0);
-    lista_encadeada_destruir(&lista);
+    ListaEncadeada *lista = lista_encadeada_criar();
+    assert(lista != NULL);
+    assert(lista_encadeada_tamanho(lista) == 0U);
+    assert(lista_encadeada_inserir_inicio(lista, 2) == 1);
+    assert(lista_encadeada_inserir_inicio(lista, 1) == 1);
+    assert(lista_encadeada_inserir_fim(lista, 3) == 1);
+    assert(lista_encadeada_tamanho(lista) == 3U);
+    assert(lista_encadeada_buscar(lista, 1) == 1);
+    assert(lista_encadeada_buscar(lista, 3) == 1);
+    assert(lista_encadeada_buscar(lista, 99) == 0);
+    lista_encadeada_destruir(lista);
     PASS("test_criar_inserir_buscar");
 }
 
 static void test_remover(void) {
-    ListaEncadeada lista;
-    lista_encadeada_criar(&lista);
-    assert(lista_encadeada_inserir_fim(&lista, 1) == 1);
-    assert(lista_encadeada_inserir_fim(&lista, 2) == 1);
-    assert(lista_encadeada_inserir_fim(&lista, 3) == 1);
-    assert(lista_encadeada_remover(&lista, 1) == 1);
-    assert(lista_encadeada_remover(&lista, 3) == 1);
-    assert(lista_encadeada_remover(&lista, 2) == 1);
-    assert(lista_encadeada_tamanho(&lista) == 0U);
-    assert(lista_encadeada_remover(&lista, 2) == 0);
-    lista_encadeada_destruir(&lista);
+    ListaEncadeada *lista = lista_encadeada_criar();
+    assert(lista != NULL);
+    assert(lista_encadeada_inserir_fim(lista, 1) == 1);
+    assert(lista_encadeada_inserir_fim(lista, 2) == 1);
+    assert(lista_encadeada_inserir_fim(lista, 3) == 1);
+    assert(lista_encadeada_remover(lista, 1) == 1);
+    assert(lista_encadeada_remover(lista, 3) == 1);
+    assert(lista_encadeada_remover(lista, 2) == 1);
+    assert(lista_encadeada_tamanho(lista) == 0U);
+    assert(lista_encadeada_remover(lista, 2) == 0);
+    lista_encadeada_destruir(lista);
     PASS("test_remover");
 }
 
 static void test_invalidos(void) {
+    assert(lista_encadeada_criar() != NULL);
     assert(lista_encadeada_inserir_inicio(NULL, 1) == 0);
     assert(lista_encadeada_inserir_fim(NULL, 1) == 0);
     assert(lista_encadeada_remover(NULL, 1) == 0);
