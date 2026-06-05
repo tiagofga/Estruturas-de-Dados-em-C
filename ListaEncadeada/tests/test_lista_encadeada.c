@@ -37,7 +37,9 @@ static void test_remover(void) {
 }
 
 static void test_invalidos(void) {
-    assert(lista_encadeada_criar() != NULL);
+    ListaEncadeada *lista = lista_encadeada_criar();
+    assert(lista != NULL);
+    lista_encadeada_destruir(lista);
     assert(lista_encadeada_inserir_inicio(NULL, 1) == 0);
     assert(lista_encadeada_inserir_fim(NULL, 1) == 0);
     assert(lista_encadeada_remover(NULL, 1) == 0);
