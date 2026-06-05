@@ -3,6 +3,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct TabelaHashItem {
+    int chave;
+    int valor;
+    struct TabelaHashItem *proximo;
+} TabelaHashItem;
+
+struct TabelaHash {
+    TabelaHashItem **baldes;
+    size_t capacidade;
+    size_t tamanho;
+};
+
 static size_t hash_int(int chave, size_t capacidade) {
     unsigned int x = (unsigned int)chave;
     x = ((x >> 16U) ^ x) * 0x45d9f3bU;
@@ -11,37 +23,40 @@ static size_t hash_int(int chave, size_t capacidade) {
     return (size_t)(x % capacidade);
 }
 
-int tabela_hash_criar(TabelaHash *tabela, size_t capacidade) {
-    if (tabela == NULL || capacidade == 0U) {
-        return 0;
+TabelaHash *tabela_hash_criar(size_t capacidade) {
+    if (capacidade == 0U) {
+        return NULL;
+    }
+    TabelaHash *tabela = malloc(sizeof(*tabela));
+    if (tabela == NULL) {
+        return NULL;
     }
     tabela->baldes = calloc(capacidade, sizeof(TabelaHashItem *));
     if (tabela->baldes == NULL) {
-        tabela->capacidade = 0U;
-        tabela->tamanho = 0U;
-        return 0;
+        free(tabela);
+        return NULL;
     }
     tabela->capacidade = capacidade;
     tabela->tamanho = 0U;
-    return 1;
+    return tabela;
 }
 
 void tabela_hash_destruir(TabelaHash *tabela) {
-    if (tabela == NULL || tabela->baldes == NULL) {
+    if (tabela == NULL) {
         return;
     }
-    for (size_t i = 0U; i < tabela->capacidade; ++i) {
-        TabelaHashItem *atual = tabela->baldes[i];
-        while (atual != NULL) {
-            TabelaHashItem *proximo = atual->proximo;
-            free(atual);
-            atual = proximo;
+    if (tabela->baldes != NULL) {
+        for (size_t i = 0U; i < tabela->capacidade; ++i) {
+            TabelaHashItem *atual = tabela->baldes[i];
+            while (atual != NULL) {
+                TabelaHashItem *proximo = atual->proximo;
+                free(atual);
+                atual = proximo;
+            }
         }
     }
     free(tabela->baldes);
-    tabela->baldes = NULL;
-    tabela->capacidade = 0U;
-    tabela->tamanho = 0U;
+    free(tabela);
 }
 
 int tabela_hash_inserir(TabelaHash *tabela, int chave, int valor) {
