@@ -3,6 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct AVLNo {
+    int valor;
+    int altura;
+    struct AVLNo *esquerda;
+    struct AVLNo *direita;
+};
+
 static int max_int(int a, int b) {
     return a > b ? a : b;
 }
