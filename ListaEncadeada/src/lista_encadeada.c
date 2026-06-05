@@ -3,12 +3,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void lista_encadeada_criar(ListaEncadeada *lista) {
+typedef struct ListaEncadeadaNo {
+    int valor;
+    struct ListaEncadeadaNo *proximo;
+} ListaEncadeadaNo;
+
+struct ListaEncadeada {
+    ListaEncadeadaNo *inicio;
+    size_t tamanho;
+};
+
+ListaEncadeada *lista_encadeada_criar(void) {
+    ListaEncadeada *lista = malloc(sizeof(*lista));
     if (lista == NULL) {
-        return;
+        return NULL;
     }
     lista->inicio = NULL;
     lista->tamanho = 0U;
+    return lista;
 }
 
 void lista_encadeada_destruir(ListaEncadeada *lista) {
@@ -21,8 +33,7 @@ void lista_encadeada_destruir(ListaEncadeada *lista) {
         free(atual);
         atual = proximo;
     }
-    lista->inicio = NULL;
-    lista->tamanho = 0U;
+    free(lista);
 }
 
 int lista_encadeada_inserir_inicio(ListaEncadeada *lista, int valor) {
